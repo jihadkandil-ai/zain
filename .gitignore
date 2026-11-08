@@ -1,9 +1,6 @@
 .env
 venv/
 tools/
-data/zain_kb_export.docx
-data/zain_kb_export.txt
-data/raw_downloads/
 __pycache__/
 *.py[cod]
 .pytest_cache/

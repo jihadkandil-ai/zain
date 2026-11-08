@@ -10,7 +10,6 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 EMAILS_DB_EXPANDED_PATH = ROOT / "data" / "emails_db_expanded.json"
-EMAILS_DB_PATH = ROOT / "data" / "emails_db.json"
 
 # High-precision Arabic/English intent → Salesforce macro id in expanded DB
 # More specific intents MUST come first.
@@ -133,9 +132,9 @@ _EXCLUDED_IDS = {
 
 
 def _db_path() -> Path:
-    if EMAILS_DB_EXPANDED_PATH.exists():
-        return EMAILS_DB_EXPANDED_PATH
-    return EMAILS_DB_PATH
+    if not EMAILS_DB_EXPANDED_PATH.exists():
+        raise FileNotFoundError(f"Missing macros DB: {EMAILS_DB_EXPANDED_PATH}")
+    return EMAILS_DB_EXPANDED_PATH
 
 
 @lru_cache(maxsize=1)
