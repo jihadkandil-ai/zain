@@ -135,15 +135,6 @@ docs/                           # Product one-pager / PRD
 
 ---
 
-## Deploy on Railway
-
-1. Push this repo to GitHub (already configured as `origin`).
-2. Open [railway.com/new](https://railway.com/new) → **Deploy from GitHub repo** → select `zain`.
-3. Railway reads `railway.json` and starts Streamlit on `$PORT`.
-4. After the first deploy: **Settings → Networking → Generate Domain**.
-
-Core Zain needs no env vars. Optional LLM proxy keys (`LLM_PROXY_API_KEY`, etc.) can be added under **Variables** later.
-
 ## Optional: share locally via Cloudflare Tunnel
 
 Quick temporary link (changes each run):
@@ -153,7 +144,6 @@ cloudflared tunnel --url http://localhost:8501
 ```
 
 For a permanent hostname, use a **named Cloudflare Tunnel** on a domain you control.
-
 
 ---
 
