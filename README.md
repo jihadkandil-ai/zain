@@ -1,138 +1,153 @@
-# Zain — The Voice Team's AI Teammate
+# Zain — Tamara Voice Care AI Teammate
 
-Hackathon prototype for Tamara's 2026 AI Hackathon.
+Zain helps Tamara Voice Care agents finish After-Call Work faster.
 
-Zain helps CX Care Voice Agents finish After-Call Work faster by turning messy notes into:
+Paste messy after-call notes → Zain returns:
 
-- Professional **customer emails** in **English and Arabic**
-- A **QA-ready case comment** (Customer Issue + Provided Solution)
+1. **What to tell CX (Macro)** — approved Care talk track / quicktext  
+2. **Email Generation** — bilingual EN + AR email in a fixed Tamara shell (greeting / thanks / body / closing)  
+3. **Case Comment** — QA-ready internal note  
+4. **Case Closure** — suggested Salesforce **Issue Category / Sub Category / Issue type** (L1 / L2 / L3)
 
-**Issue types in MVP:** Refund ARN · Unrecognized charge · Evidence request
+No fine-tuning. Matching is retrieval from local Care databases.
 
-> **Data rule:** Use synthetic data only. Do not paste real or masked customer, merchant, or employee information.
-
-**UI theme:** Tamara brand tokens (Lavender `#9600F1`, Zingy Purple `#5300BA`, Dreamy/Light Lilac) per Tamara Visual Identity Guidelines.
+> Use synthetic or anonymized notes for demos. Do not paste real customer PII into shared environments.
 
 ---
 
-## Quick start
+## What works today
+
+| Pillar | How it works |
+|--------|----------------|
+| Macro + Email | Retrieves from `data/emails_db_expanded.json` (Care quicktexts). Agent picks if several match. Email body stays standardized Care text. |
+| Case Comment | Built from notes + matched scenario / macro context |
+| Case Closure | Retrieves from `data/issue_types_kb.json` built from **[Customer] Issue Types** |
+
+**Not required to run the app:** LLM API key. Core flow is local retrieval + Streamlit UI.
+
+---
+
+## Install & run (Windows)
+
+### 1. Prerequisites
+
+- Python **3.11+** recommended  
+- Git  
+
+### 2. Clone
 
 ```powershell
-cd C:\Zain-Copilot
+git clone https://github.com/jihadkandil-ai/zain.git
+cd zain
+```
+
+### 3. Create a virtual environment
+
+```powershell
+python -m venv venv
 .\venv\Scripts\Activate.ps1
+```
+
+If PowerShell blocks activation:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+.\venv\Scripts\Activate.ps1
+```
+
+### 4. Install dependencies
+
+```powershell
 pip install -r requirements.txt
+```
+
+### 5. (Optional) Environment file
+
+Only needed later if you re-enable LLM helpers. Core Zain runs without it.
+
+```powershell
 copy .env.example .env
-# Edit .env and set LLM_PROXY_API_KEY=... (Tamara virtual key)
+```
+
+### 6. Start Zain
+
+```powershell
 streamlit run app.py
 ```
 
-Without a proxy key, the app still runs using synthetic macro templates (demo never blanks).
+Browser opens at `http://localhost:8501`.
 
 ---
 
-## Tamara LLM Proxy access
+## Install & run (macOS / Linux)
 
-Preferred model path: **Tamara AI Platform LLM Proxy** (`https://llmproxy.dwh.tamara.co/v1`).
-
-1. Complete the request form: https://forms.gle/rvu7rSrBjXt71Gcm6  
-2. Post in `#it-helpdesk` (template below)  
-3. After approval, DE places the virtual key in Jumpcloud — put it in local `.env` only  
-
-Model list: https://llmproxy.dwh.tamara.co/ui/model_hub_table/
-
-### Suggested `#it-helpdesk` message
-
-```text
-Requesting LLM Proxy virtual key for Tamara 2026 AI Hackathon.
-
-Purpose: Developing Zain, an internal CX Voice Team copilot that turns messy after-call notes into bilingual (EN/AR) customer emails and QA-ready case comments (Refund ARN, unrecognized charge, evidence request).
-
-Business value: Reduce ACW/AHT, improve QA consistency and Tamara tone of voice, free SMEs/TLs from repetitive coaching — prototype aimed at later CX pilot.
-
-Team name: <YOUR_TEAM_NAME>
-Team account or Personal account: <Team / Personal>
-Application name: Zain (Voice Team AI Teammate)
-Environment: development
-LLM(s): gemini-2.0-flash (or equivalent flash/reasoning model from model hub — bilingual drafting + structured JSON)
-Sensitive/confidential company data into LLM?: No
-Measures: Synthetic data only for hackathon; light email/phone redaction in app; no real customer/merchant/employee PII
-Budget allocation: ~$50–100 / month during hackathon + short pilot
-Rate limit estimation: ~5–10 RPM, ~50K TPM (low; local demo + short evaluation runs)
+```bash
+git clone https://github.com/jihadkandil-ai/zain.git
+cd zain
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
 ```
 
 ---
 
-## Demo script (≤5 minutes)
+## Try it (2 minutes)
 
-1. Open the app and show the Tamara-branded UI + sidebar samples (synthetic IDs only: `TMP-…`, `PAY-…`).
-2. Load **Refund ARN — messy notes**. Point at the raw brain-dump on the left.
-3. Click **Generate with Zain**. Show:
-   - Polished English email
-   - Arabic email
-   - Case comment (Issue + Solution)
-4. Optionally load **Unrecognized charge** or **Evidence request** to show adaptation beyond a single template.
-5. Close with business impact: lower ACW/AHT, fewer QA documentation mistakes, bilingual consistency, path to CRM embed + KB + escalation guard — via Tamara LLM Proxy for production-aligned access.
-
----
-
-## Notion one-pager outline (submission)
-
-### Business impact and estimates (state assumptions)
-
-- **Problem:** Voice agents spend ACW writing emails and case notes; quality varies; bilingual drafting is slow.
-- **Assumption example:** If ACW email/docs averages X minutes/call and Zain cuts Y%, across N Voice agents / Z calls/day → hours saved / week.
-- **Quality:** Fewer vague case comments and tone/macro deviations → fewer QA fails and less TL coaching on basics.
-- **Resilience:** Consistent handling during high volume without linear headcount growth.
-
-### How it was built
-
-- Streamlit UI styled with Tamara Lavender brand tokens
-- Tamara LLM Proxy (OpenAI-compatible) for generation
-- Synthetic approved-style macros for tone + offline fallback
-- Local `.env` for virtual key (no secrets in repo)
-
-### Prototype performance
-
-- Works for 3 high-volume scenarios with EN + AR output
-- Structured case comment draft included
-- Fallback templates if the model is unavailable
-- Light PII pattern redaction (email/phone) for demo safety
-
-### Where AI is used and what it adds
-
-- AI adapts messy, incomplete agent notes into complete bilingual emails and structured CRM notes.
-- Templates alone cannot interpret free-form brain-dumps or fill context-aware wording; the LLM does.
-- Macros constrain tone so output stays production-credible.
-
-### Remaining steps to production / adoption
-
-1. Embed in the agent desktop / CRM (copy actions → one-click case update)
-2. Connect approved Knowledge Base / real macros (Phase 3)
-3. Escalation Guard with mandatory field checks (Phase 4)
-4. Auth/SSO, audit logging, evaluation set, and Tamara LLM Proxy budget/rate limits
-5. Pilot with Voice Team + QA scoring before wider rollout
+1. Open the app and paste messy notes, for example:
+   - `cust didn't receive login OTP`
+   - `late fee charged wants waiver`
+   - `item damaged not as described`
+   - `refund not received late refund`
+2. Click **Generate with Zain**.
+3. If several Care macros match, pick the right one.
+4. Check the four tabs: Macro · Email · Case Comment · Case Closure.
 
 ---
 
 ## Project layout
 
 ```
-app.py
-.streamlit/config.toml
-src/
-  config.py
-  prompts.py
-  generator.py
-  macros.py
-data/
-  sample_notes.json
-.env.example
+app.py                          # Streamlit workspace
 requirements.txt
+.env.example                    # Optional LLM proxy settings
+.streamlit/config.toml          # Tamara theme
+data/
+  emails_db_expanded.json       # Care email / macro DB (retrieval)
+  issue_types_kb.json           # Salesforce issue types L1/L2/L3
+  tamara_knowledge_base.json    # Scenario / case-comment helpers
+src/
+  emails_db.py                  # Macro matching
+  email_standardize.py          # Fixed Tamara email shell
+  issue_types.py                # Issue type retrieval
+  knowledge_base.py             # Case comment / scenario helpers
+  debug_trace.py                # Optional debug (ZAIN_DEBUG=1)
+scripts/
+  build_issue_types_kb.py       # Rebuild issue_types_kb.json
+docs/                           # Product one-pager / PRD
 ```
 
-## Hackathon compliance
+### Rebuild issue types DB (after KB article updates)
 
-- Synthetic sample notes and IDs only
-- No real Tamara customer/merchant data
-- LLM access via approved Tamara proxy when available
-- Ownership of work belongs to Tamara per hackathon rules
+```powershell
+.\venv\Scripts\python.exe scripts\build_issue_types_kb.py
+```
+
+---
+
+## Optional: share locally via Cloudflare Tunnel
+
+Quick temporary link (changes each run):
+
+```powershell
+cloudflared tunnel --url http://localhost:8501
+```
+
+For a permanent hostname, use a **named Cloudflare Tunnel** on a domain you control.
+
+---
+
+## Docs
+
+- [One-pager](docs/ZAIN_NOTION_ONE_PAGER.md)
+- [PRD](docs/ZAIN_NOTION_PRD.md)
