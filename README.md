@@ -5,11 +5,11 @@ Zain helps Tamara Voice Care agents finish After-Call Work faster.
 Paste messy after-call notes → Zain returns:
 
 1. **What to tell CX (Macro)** — approved Care talk track / quicktext  
-2. **Email Generation** — bilingual EN + AR email in a fixed Tamara shell (greeting / thanks / body / closing)  
-3. **Case Comment** — QA-ready internal note  
-4. **Case Closure** — suggested Salesforce **Issue Category / Sub Category / Issue type** (L1 / L2 / L3)
+2. **Email Generation** — bilingual EN + AR email in a fixed Tamara shell.  
+3. **Case Comment** — QA-ready internal note  (milestone2)
+4. **Case Closure** — suggested Salesforce **Issue Category / Sub Category / Issue type** (milestone2)
 
-No fine-tuning. Matching is retrieval from local Care databases.
+No fine-tuning for now(in the future with approval). Matching is retrieval from local Care databases (that will result in 100% accuracy).
 
 > Use synthetic or anonymized notes for demos. Do not paste real customer PII into shared environments.
 
