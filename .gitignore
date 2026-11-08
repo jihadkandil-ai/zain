@@ -1,6 +1,8 @@
 .env
 venv/
 tools/
+.cursor/
+
 __pycache__/
 *.py[cod]
 .pytest_cache/
