@@ -1,0 +1,2032 @@
+{
+  "version": 1,
+  "source": "[Customer] Issue Types",
+  "total": 95,
+  "tips": [
+    "Focus on the primary reason for contact",
+    "Always link correct issue type to interaction type",
+    "Consider the customer's emotional state",
+    "When in doubt, consult with team lead",
+    "In reopen/new issue/update cases, adjust issue type if needed"
+  ],
+  "fields": [
+    "Issue Category (Level 1)",
+    "Sub Category (Level 2)",
+    "Issue type (Level 3)"
+  ],
+  "issue_types": [
+    {
+      "id": "account_account_security_data_security_privacy",
+      "path": "Account > Account Security > Data Security & Privacy",
+      "issue_category": "Account",
+      "sub_category": "Account Security",
+      "issue_type": "Data Security & Privacy",
+      "use_case": "Customer inquiries about how Tamara collects, protects, and manages personal data.",
+      "includes": [
+        "what personal data Tamara collects stores or shares",
+        "how bank account or card details are protected",
+        "request deletion of data GDPR PDPL",
+        "suspect information exposed or leaked",
+        "who has access to account data"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "gdpr",
+        "pdpl",
+        "privacy",
+        "data deletion",
+        "leak",
+        "خصوصية",
+        "حذف بيانات"
+      ]
+    },
+    {
+      "id": "account_account_security_national_id_fraud",
+      "path": "Account > Account Security > National ID Fraud",
+      "issue_category": "Account",
+      "sub_category": "Account Security",
+      "issue_type": "National ID Fraud",
+      "use_case": "Customer suspects National ID or identity was used on Tamara without consent.",
+      "includes": [
+        "account or orders created using their National ID they did not initiate",
+        "unauthorized activity linked to identity National ID Nafath Absher Yakeen UAEKYC",
+        "someone created or used Tamara account using their identity"
+      ],
+      "does_not_include": [
+        "phone number already registered without identity misuse → Phone Number Already in Use",
+        "login access recovery without identity misuse"
+      ],
+      "keywords": [
+        "national id fraud",
+        "national id",
+        "هوية",
+        "احتيال هوية",
+        "nafath",
+        "absher",
+        "yakeen",
+        "uaekyc",
+        "identity misuse",
+        "without consent"
+      ]
+    },
+    {
+      "id": "account_account_security_unrecognized_login",
+      "path": "Account > Account Security > Unrecognized Login",
+      "issue_category": "Account",
+      "sub_category": "Account Security",
+      "issue_type": "Unrecognized Login",
+      "use_case": "Suspicious or unauthorized activity related to accessing Tamara account.",
+      "includes": [
+        "login they did not initiate",
+        "someone else gained or attempting access",
+        "OTP SMS push they did not request",
+        "notifications despite never creating account"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "unrecognized login",
+        "suspicious login",
+        "دخول غير معروف",
+        "otp بدون طلب"
+      ]
+    },
+    {
+      "id": "account_id_verification",
+      "path": "Account > ID verification",
+      "issue_category": "Account",
+      "sub_category": "ID verification",
+      "issue_type": "ID verification",
+      "use_case": "Unable to complete or questions about identity verification.",
+      "includes": [
+        "cannot complete ID verification registration",
+        "Nafath Yakeen Absher UAEKYC failing",
+        "selfie or ID photo rejected",
+        "verification pending too long",
+        "what documents required",
+        "why Tamara requires ID verification"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "id verification",
+        "تحقق هوية",
+        "selfie rejected",
+        "nafath fail"
+      ]
+    },
+    {
+      "id": "account_passcode",
+      "path": "Account > Passcode",
+      "issue_category": "Account",
+      "sub_category": "Passcode",
+      "issue_type": "Passcode",
+      "use_case": "Difficulty with Tamara account passcode.",
+      "includes": [
+        "unable to set passcode",
+        "forgot passcode locked out",
+        "reset or change passcode",
+        "how to set up manage passcode"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "passcode",
+        "رمز المرور",
+        "pin",
+        "locked out"
+      ]
+    },
+    {
+      "id": "account_registration_login",
+      "path": "Account > Registration & login",
+      "issue_category": "Account",
+      "sub_category": "Registration & login",
+      "issue_type": "Registration & login",
+      "use_case": "Unable to sign up or log in, or general registration questions.",
+      "includes": [
+        "cannot log in",
+        "unable to complete registration",
+        "app crashes blank screens errors during login",
+        "session keeps expiring logged out",
+        "redirected to new account creation instead of existing"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "registration",
+        "login",
+        "sign up",
+        "تسجيل",
+        "تسجيل دخول"
+      ]
+    },
+    {
+      "id": "account_registration_login_phone_number_already_in_use",
+      "path": "Account > Registration & login > Phone number already in use",
+      "issue_category": "Account",
+      "sub_category": "Registration & login",
+      "issue_type": "Phone number already in use",
+      "use_case": "Phone number already registered; ownership/access without identity misuse.",
+      "includes": [
+        "phone number already in use during registration",
+        "do not recall creating account with that number",
+        "recover access to account linked to number"
+      ],
+      "does_not_include": [
+        "unauthorized accounts or National ID → National ID Fraud",
+        "explicit identity misuse suspicion"
+      ],
+      "keywords": [
+        "phone already in use",
+        "number already registered",
+        "الرقم مستخدم",
+        "phone archiving"
+      ]
+    },
+    {
+      "id": "account_registration_login_didn_t_receive_the_login_registration_otp",
+      "path": "Account > Registration & login > Didn't receive the login / registration OTP",
+      "issue_category": "Account",
+      "sub_category": "Registration & login",
+      "issue_type": "Didn't receive the login / registration OTP",
+      "use_case": "Not receiving or delayed OTP for signup/login.",
+      "includes": [
+        "do not receive OTP SMS",
+        "OTP after expired",
+        "OTP sent to wrong number",
+        "multiple OTP requests without success"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "didn't receive otp",
+        "otp not received",
+        "not receiving otp",
+        "لم يصل otp",
+        "otp login",
+        "otp",
+        "otp sms"
+      ]
+    },
+    {
+      "id": "account_authentication_mfa_verification_failure",
+      "path": "Account > Authentication > MFA - Verification Failure",
+      "issue_category": "Account",
+      "sub_category": "Authentication",
+      "issue_type": "MFA - Verification Failure",
+      "use_case": "Unable to complete MFA due to failure in authentication step.",
+      "includes": [
+        "mfa failure",
+        "in-app approval fail",
+        "selfie verification fail",
+        "passcode mfa fail"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "mfa",
+        "multi-factor",
+        "verification failure",
+        "مصادقة"
+      ]
+    },
+    {
+      "id": "account_authentication_mfa_add_remove_trusted_device",
+      "path": "Account > Authentication > MFA - Add / remove trusted device",
+      "issue_category": "Account",
+      "sub_category": "Authentication",
+      "issue_type": "MFA - Add / remove trusted device",
+      "use_case": "Add, remove, or manage trusted device for MFA.",
+      "includes": [
+        "add trusted device",
+        "remove trusted device",
+        "manage trusted device"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "trusted device",
+        "جهاز موثوق"
+      ]
+    },
+    {
+      "id": "account_update_account_change_phone_number",
+      "path": "Account > Update Account > Change phone number",
+      "issue_category": "Account",
+      "sub_category": "Update Account",
+      "issue_type": "Change phone number",
+      "use_case": "Update phone number linked to Tamara account.",
+      "includes": [
+        "how to change phone number",
+        "change number error",
+        "new number cannot receive OTP",
+        "cannot change number due to active order or balance"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "change phone",
+        "update phone",
+        "تغيير رقم"
+      ]
+    },
+    {
+      "id": "account_update_account_change_email",
+      "path": "Account > Update Account > Change Email",
+      "issue_category": "Account",
+      "sub_category": "Update Account",
+      "issue_type": "Change Email",
+      "use_case": "Update email linked to Tamara account.",
+      "includes": [
+        "how to change email",
+        "change email error"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "change email",
+        "update email",
+        "تغيير ايميل"
+      ]
+    },
+    {
+      "id": "account_update_account_delete_account",
+      "path": "Account > Update Account > Delete account",
+      "issue_category": "Account",
+      "sub_category": "Update Account",
+      "issue_type": "Delete account",
+      "use_case": "Permanently close Tamara account.",
+      "includes": [
+        "how to delete account",
+        "close account permanently"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "delete account",
+        "حذف حساب",
+        "close account"
+      ]
+    },
+    {
+      "id": "account_update_account_reactivate_account",
+      "path": "Account > Update Account > Reactivate account",
+      "issue_category": "Account",
+      "sub_category": "Update Account",
+      "issue_type": "Reactivate account",
+      "use_case": "Restore access to deactivated account.",
+      "includes": [
+        "reactivate deactivated account",
+        "account no longer active"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "reactivate",
+        "إعادة تفعيل"
+      ]
+    },
+    {
+      "id": "legal_and_government_credit_bureau_credit_bureau_process_report",
+      "path": "Legal and Government > Credit Bureau > Credit Bureau Process & Report",
+      "issue_category": "Legal and Government",
+      "sub_category": "Credit Bureau",
+      "issue_type": "Credit Bureau Process & Report",
+      "use_case": "Inquiries/complaints about Tamara credit bureau reporting.",
+      "includes": [
+        "whether Tamara reports to credit bureau",
+        "why reported to SIMAH or AECB",
+        "credit score dropped",
+        "paid dues but bureau still shows balance",
+        "dispute credit bureau record",
+        "clearance or settlement letter",
+        "escalate legally over bureau reporting"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "simah",
+        "aecb",
+        "credit bureau",
+        "سمة",
+        "تقرير ائتماني"
+      ]
+    },
+    {
+      "id": "legal_and_government_shariah_compliance",
+      "path": "Legal and Government > Shariah compliance",
+      "issue_category": "Legal and Government",
+      "sub_category": "Shariah compliance",
+      "issue_type": "Shariah compliance",
+      "use_case": "Whether Tamara products comply with Islamic finance.",
+      "includes": [
+        "BNPL halal",
+        "fees or profit rates halal",
+        "fatwa",
+        "late fees riba",
+        "shariah board certification"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "shariah",
+        "halal",
+        "riba",
+        "شرعي",
+        "حلال",
+        "ربا"
+      ]
+    },
+    {
+      "id": "order_merchant_fraud",
+      "path": "Order > Merchant fraud",
+      "issue_category": "Order",
+      "sub_category": "Merchant fraud",
+      "issue_type": "Merchant fraud",
+      "use_case": "Merchant intentionally deceived or scam suspected.",
+      "includes": [
+        "merchant took payment without fulfilling",
+        "merchant dishonest",
+        "merchant disappeared after payment"
+      ],
+      "does_not_include": [
+        "wrong damaged item from legitimate merchant → Item Not As Described",
+        "missing delayed undelivered → Item or Order Not Delivered"
+      ],
+      "keywords": [
+        "merchant fraud",
+        "scam merchant",
+        "scam",
+        "merchant disappeared",
+        "احتيال تاجر",
+        "تاجر نصب"
+      ]
+    },
+    {
+      "id": "order_merchant_fraud_extra_fees",
+      "path": "Order > Merchant Fraud > Extra Fees",
+      "issue_category": "Order",
+      "sub_category": "Merchant Fraud",
+      "issue_type": "Extra Fees",
+      "use_case": "Merchant charged undisclosed fees.",
+      "includes": [
+        "price different from displayed",
+        "surcharge for using Tamara",
+        "in-store higher with Tamara",
+        "minimum purchase for Tamara not disclosed"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "extra fees",
+        "surcharge",
+        "رسوم إضافية"
+      ]
+    },
+    {
+      "id": "order_murabha_pay_by_finance_required_documents",
+      "path": "Order > Murabha - Pay By Finance > Required Documents",
+      "issue_category": "Order",
+      "sub_category": "Murabha - Pay By Finance",
+      "issue_type": "Required Documents",
+      "use_case": "Issues with documents for Pay by Finance (Murabha) signing.",
+      "includes": [
+        "did not receive documents to sign",
+        "unable to open view sign documents",
+        "questions about what they are signing"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "murabha documents",
+        "pay by finance documents",
+        "مرابحة مستندات"
+      ]
+    },
+    {
+      "id": "order_murabha_pay_by_finance_signed_contract",
+      "path": "Order > Murabha - Pay by Finance > Signed contract",
+      "issue_category": "Order",
+      "sub_category": "Murabha - Pay by Finance",
+      "issue_type": "Signed contract",
+      "use_case": "Request copy of signed Pay by Finance contract.",
+      "includes": [
+        "did not receive signed contract",
+        "retrieve signed contract",
+        "need contract for records legal financial"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "signed contract",
+        "عقد مرابحة",
+        "murabha contract"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_can_t_see_tamara_as_a_payment_option",
+      "path": "Order > Placing an Order > Can't see Tamara as a payment option",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Can't see Tamara as a payment option",
+      "use_case": "Cannot see or access Tamara at merchant checkout.",
+      "includes": [
+        "cannot find Tamara at checkout",
+        "Tamara greyed out",
+        "Tamara on website but not app or vice versa"
+      ],
+      "does_not_include": [
+        "only PIF no installments → Can't See Split Payment Options (only PIF)"
+      ],
+      "keywords": [
+        "can't see tamara",
+        "tamara not at checkout",
+        "تمارا مو ظاهرة"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_didn_t_receive_the_order_otp",
+      "path": "Order > Placing an Order > Didn't receive the order OTP",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Didn't receive the order OTP",
+      "use_case": "OTP for confirming order not received or delayed.",
+      "includes": [
+        "no OTP when placing order",
+        "OTP expired",
+        "OTP wrong number",
+        "multiple OTP without success"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "order otp",
+        "otp order",
+        "otp شراء"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_instore_did_not_receive_the_payment_link_sms",
+      "path": "Order > Placing an Order > Instore - did not receive the payment link SMS",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Instore - did not receive the payment link SMS",
+      "use_case": "In-store payment link SMS not received or unusable.",
+      "includes": [
+        "did not receive payment link SMS in-store",
+        "link expired",
+        "SMS wrong number",
+        "requested link multiple times"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "payment link sms",
+        "instore sms",
+        "رابط الدفع"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_maximum_minimum_purchase_limit",
+      "path": "Order > Placing an Order > Maximum/minimum purchase limit",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Maximum/minimum purchase limit",
+      "use_case": "Questions about purchase limit / pre-qualification.",
+      "includes": [
+        "pre-qualification purchasing power",
+        "limit low",
+        "limit decreased",
+        "how to increase limit",
+        "what factors affect limit",
+        "limit resets after repayment",
+        "limit differs across merchants",
+        "previously higher limit now too low"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "purchase limit",
+        "prequal",
+        "pre-qualification",
+        "حد الشراء",
+        "موافقة مسبقة"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_order_verification_ivr_call",
+      "path": "Order > Placing an Order > Order verification IVR call",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Order verification IVR call",
+      "use_case": "Issues with order verification IVR call.",
+      "includes": [
+        "did not receive verification call",
+        "missed call order on hold cancelled",
+        "unable to complete IVR",
+        "why verification call required",
+        "alternative verification method"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "ivr",
+        "verification call",
+        "مكالمة تحقق"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_declined_order",
+      "path": "Order > Placing an Order > Declined order",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Declined order",
+      "use_case": "Order not approved / why declined.",
+      "includes": [
+        "order declined reason",
+        "no overdue but declined",
+        "approved elsewhere declined Tamara",
+        "declined at specific merchant",
+        "unclear decline reason",
+        "steps to get approved"
+      ],
+      "does_not_include": [
+        "stuck order → Cannot See Order (Stuck Order)",
+        "payment method failing → Unable to Pay Pending Dues"
+      ],
+      "keywords": [
+        "declined order",
+        "order declined",
+        "طلب مرفوض"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_cannot_see_order_expired_order",
+      "path": "Order > Placing an order > cannot see order (expired order)",
+      "issue_category": "Order",
+      "sub_category": "Placing an order",
+      "issue_type": "cannot see order (expired order)",
+      "use_case": "Order expired before completed/confirmed.",
+      "includes": [
+        "order expired",
+        "checkout timed out",
+        "order disappeared",
+        "reinstate expired order",
+        "charged before order expired"
+      ],
+      "does_not_include": [
+        "stuck authorized → Stuck Order",
+        "declined → Declined Order"
+      ],
+      "keywords": [
+        "expired order",
+        "طلب منتهي"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_cannot_see_order_stuck_order",
+      "path": "Order > Placing an Order > cannot see order (stuck order)",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "cannot see order (stuck order)",
+      "use_case": "Checkout completed but order not appearing/processing correctly.",
+      "includes": [
+        "authorized approved but merchant not fulfilled",
+        "down payment charged merchant no record",
+        "order in Tamara merchant no record",
+        "confirmation but merchant not dispatched",
+        "charged by Tamara no merchant confirmation"
+      ],
+      "does_not_include": [
+        "declined before completion → Declined Order"
+      ],
+      "keywords": [
+        "stuck order",
+        "authorized order",
+        "طلب معلق"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_chose_the_wrong_installment_plan",
+      "path": "Order > Placing an Order > Chose the wrong installment plan",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Chose the wrong installment plan",
+      "use_case": "Selected wrong payment plan and wants to change.",
+      "includes": [
+        "PIF instead of instalments or vice versa",
+        "switch instalment plans",
+        "wrong plan after confirmed",
+        "cancel and re-place with correct plan",
+        "wrong plan after partial payment"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "wrong installment",
+        "wrong plan",
+        "خطة خاطئة",
+        "pif by mistake"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_link_bank_account",
+      "path": "Order > Placing an Order > Link Bank Account",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Link Bank Account",
+      "use_case": "Questions/issues linking bank for credit verification.",
+      "includes": [
+        "why link bank",
+        "security privacy linking bank",
+        "error linking bank",
+        "bank not listed",
+        "link shows incomplete",
+        "linked wrong bank"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "link bank",
+        "ربط بنك",
+        "bank linking"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_can_t_see_a_specific_split_payment_option_x",
+      "path": "Order > Placing an Order > can't see a specific split payment option (X)",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "can't see a specific split payment option (X)",
+      "use_case": "Specific instalment plan missing while others visible.",
+      "includes": [
+        "specific instalment plan not appearing",
+        "previously had plan no longer showing",
+        "not eligible for specific split option",
+        "plan at some merchants not others"
+      ],
+      "does_not_include": [
+        "no Tamara at all → Can't see Tamara as payment option",
+        "only PIF → Can't see split payment options (only PIF)"
+      ],
+      "keywords": [
+        "specific split",
+        "si6 missing",
+        "خطة معينة مو ظاهرة"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_can_t_see_tamara_s_split_payment_options_only_pif",
+      "path": "Order > Placing an Order > Can't see Tamara's split payment options (only PIF)",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Can't see Tamara's split payment options (only PIF)",
+      "use_case": "Only Pay in Full offered, no instalments.",
+      "includes": [
+        "only PIF showing",
+        "instalments no longer appearing",
+        "why no instalment plans",
+        "instalments on some merchants not others"
+      ],
+      "does_not_include": [
+        "Tamara not appearing → Can't see Tamara as payment option",
+        "SiX missing but others visible → specific split option"
+      ],
+      "keywords": [
+        "only pif",
+        "no installments",
+        "ادفعها كاملة فقط",
+        "no split"
+      ]
+    },
+    {
+      "id": "order_placing_an_order_can_t_see_a_specific_split_payment_option_six",
+      "path": "Order > Placing an Order > Can't see a specific split payment option (SiX)",
+      "issue_category": "Order",
+      "sub_category": "Placing an Order",
+      "issue_type": "Can't see a specific split payment option (SiX)",
+      "use_case": "Some split options available but expected one (e.g. Si4) missing.",
+      "includes": [
+        "si2 si3 available si4 missing",
+        "cannot see specific SiX option"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "six",
+        "si4",
+        "si3",
+        "split option missing"
+      ]
+    },
+    {
+      "id": "order_dispute_cancel_dispute",
+      "path": "Order > Dispute > Cancel dispute",
+      "issue_category": "Order",
+      "sub_category": "Dispute",
+      "issue_type": "Cancel dispute",
+      "use_case": "Withdraw or cancel a previously raised dispute.",
+      "includes": [
+        "how to cancel open dispute",
+        "request support cancel dispute",
+        "filed dispute in error"
+      ],
+      "does_not_include": [
+        "cancel return/order not dispute → Refunds or Return/Cancellation Not Processed"
+      ],
+      "keywords": [
+        "cancel dispute",
+        "إلغاء مطالبة",
+        "withdraw dispute"
+      ]
+    },
+    {
+      "id": "order_dispute_item_not_as_described",
+      "path": "Order > Dispute > Item not as described",
+      "issue_category": "Order",
+      "sub_category": "Dispute",
+      "issue_type": "Item not as described",
+      "use_case": "Item does not match expectation without clear intentional fraud.",
+      "includes": [
+        "different item",
+        "damaged items",
+        "counterfeit from legitimate merchant"
+      ],
+      "does_not_include": [
+        "intentional scam → Merchant Fraud"
+      ],
+      "keywords": [
+        "item not as described",
+        "damaged",
+        "غير مطابق",
+        "تالف"
+      ]
+    },
+    {
+      "id": "order_dispute_item_or_order_not_delivered",
+      "path": "Order > Dispute > Item or order not delivered",
+      "issue_category": "Order",
+      "sub_category": "Dispute",
+      "issue_type": "Item or order not delivered",
+      "use_case": "Delayed missing undelivered order; merchant assumed legitimate.",
+      "includes": [
+        "did not receive order",
+        "delivery delays",
+        "tracking delivered but not received"
+      ],
+      "does_not_include": [
+        "intentional merchant fraud → Merchant Fraud"
+      ],
+      "keywords": [
+        "not delivered",
+        "missing order",
+        "ما وصل الطلب",
+        "undelivered"
+      ]
+    },
+    {
+      "id": "order_dispute_canceled_by_merchant_but_not_reflected_in_tamara",
+      "path": "Order > Dispute > Canceled by merchant but not reflected in Tamara",
+      "issue_category": "Order",
+      "sub_category": "Dispute",
+      "issue_type": "Canceled by merchant but not reflected in Tamara",
+      "use_case": "Merchant confirmed cancellation but Tamara not updated.",
+      "includes": [
+        "merchant confirmation order still active",
+        "charges after cancellation confirmation",
+        "proof of cancellation not reflected"
+      ],
+      "does_not_include": [
+        "waiting merchant action → Return/Cancellation Not Processed"
+      ],
+      "keywords": [
+        "canceled by merchant",
+        "not reflected",
+        "التاجر ألغى"
+      ]
+    },
+    {
+      "id": "order_dispute_return_cancellation_not_processed",
+      "path": "Order > Dispute > Return/cancellation not processed",
+      "issue_category": "Order",
+      "sub_category": "Dispute",
+      "issue_type": "Return/cancellation not processed",
+      "use_case": "Return/cancel requested but merchant not processed yet.",
+      "includes": [
+        "returned items merchant not completed",
+        "requested cancellation no merchant confirmation",
+        "waiting merchant process return cancel"
+      ],
+      "does_not_include": [
+        "merchant-confirmed not in Tamara → Canceled by merchant but not reflected"
+      ],
+      "keywords": [
+        "return not processed",
+        "cancellation not processed",
+        "إلغاء ما انعكس"
+      ]
+    },
+    {
+      "id": "other_feedback_new_feature_or_product_request",
+      "path": "Other > Feedback > New feature or product request",
+      "issue_category": "Other",
+      "sub_category": "Feedback",
+      "issue_type": "New feature or product request",
+      "use_case": "Suggesting or requesting a new feature/product.",
+      "includes": [
+        "suggest new feature",
+        "feature on roadmap",
+        "reinstate previous feature"
+      ],
+      "does_not_include": [
+        "general app feedback → Feedback About Tamara"
+      ],
+      "keywords": [
+        "feature request",
+        "طلب ميزة"
+      ]
+    },
+    {
+      "id": "other_feedback_new_merchant_request",
+      "path": "Other > Feedback > New merchant request",
+      "issue_category": "Other",
+      "sub_category": "Feedback",
+      "issue_type": "New merchant request",
+      "use_case": "Want Tamara at a merchant that does not accept Tamara yet.",
+      "includes": [
+        "add specific merchant",
+        "why merchant does not accept Tamara",
+        "how merchant can partner"
+      ],
+      "does_not_include": [
+        "feedback about existing merchant → Customer feedback about merchant"
+      ],
+      "keywords": [
+        "new merchant request",
+        "تاجر جديد",
+        "partner request merchant"
+      ]
+    },
+    {
+      "id": "other_could_not_find_a_relevant_issue_type",
+      "path": "Other > Could not find a relevant issue type",
+      "issue_category": "Other",
+      "sub_category": "Could not find a relevant issue type",
+      "issue_type": "Could not find a relevant issue type",
+      "use_case": "Contact does not fit any existing issue type after review.",
+      "includes": [
+        "no reasonable alternative issue type"
+      ],
+      "does_not_include": [
+        "partially matches existing",
+        "fits Account Order Payment etc"
+      ],
+      "keywords": [
+        "no relevant issue type",
+        "unclear category"
+      ]
+    },
+    {
+      "id": "other_related_to_collection_agency",
+      "path": "Other > Related to Collection agency",
+      "issue_category": "Other",
+      "sub_category": "Related to Collection agency",
+      "issue_type": "Related to Collection agency",
+      "use_case": "Contacted by collection agency or concerns about collection.",
+      "includes": [
+        "collection agency call",
+        "dispute amount with agency",
+        "settle with Tamara not agency",
+        "harassed by agency",
+        "who authorized agency"
+      ],
+      "does_not_include": [
+        "credit bureau SIMAH/AECB → Credit Bureau Process & Report"
+      ],
+      "keywords": [
+        "collection agency",
+        "تحصيل",
+        "agency"
+      ]
+    },
+    {
+      "id": "other_customer_feedback_about_merchant",
+      "path": "Other > Customer feedback about merchant",
+      "issue_category": "Other",
+      "sub_category": "Customer feedback about merchant",
+      "issue_type": "Customer feedback about merchant",
+      "use_case": "General feedback about a merchant not tied to a specific order.",
+      "includes": [
+        "poor merchant service general",
+        "is merchant legitimate",
+        "report untrustworthy merchant",
+        "merchant no longer accepts Tamara"
+      ],
+      "does_not_include": [
+        "order-specific → Merchant Fraud or Dispute type"
+      ],
+      "keywords": [
+        "feedback about merchant",
+        "تقييم تاجر"
+      ]
+    },
+    {
+      "id": "other_about_tamara_general",
+      "path": "Other > About Tamara (General)",
+      "issue_category": "Other",
+      "sub_category": "About Tamara (General)",
+      "issue_type": "About Tamara (General)",
+      "use_case": "Truly general questions about Tamara.",
+      "includes": [
+        "what is Tamara",
+        "how BNPL works",
+        "available in country",
+        "business model"
+      ],
+      "does_not_include": [
+        "payment failures → Unable to Pay",
+        "specific charge → Autocharge or Unrecognized",
+        "declined order",
+        "refund return",
+        "credit bureau"
+      ],
+      "keywords": [
+        "what is tamara",
+        "about tamara",
+        "ما هي تمارا",
+        "how bnpl works"
+      ]
+    },
+    {
+      "id": "other_feedback_feedback_about_tamara",
+      "path": "Other > Feedback > Feedback about Tamara",
+      "issue_category": "Other",
+      "sub_category": "Feedback",
+      "issue_type": "Feedback about Tamara",
+      "use_case": "General feedback about app or overall experience.",
+      "includes": [
+        "app slow buggy",
+        "overall experience feedback",
+        "compare to competitor general",
+        "suggest improvements without specific feature",
+        "feedback after resolved support"
+      ],
+      "does_not_include": [
+        "specific new feature → New feature or product request"
+      ],
+      "keywords": [
+        "feedback about tamara",
+        "ملاحظة على التطبيق"
+      ]
+    },
+    {
+      "id": "other_incomplete_contact_authentication_failed",
+      "path": "Other > Incomplete Contact > Authentication failed",
+      "issue_category": "Other",
+      "sub_category": "Incomplete Contact",
+      "issue_type": "Authentication failed",
+      "use_case": "Closed because customer could not be authenticated.",
+      "includes": [
+        "failed security verification questions"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "authentication failed",
+        "فشل التحقق"
+      ]
+    },
+    {
+      "id": "other_incomplete_contact_call_chat_connection_issue",
+      "path": "Other > Incomplete Contact > Call/chat connection issue",
+      "issue_category": "Other",
+      "sub_category": "Incomplete Contact",
+      "issue_type": "Call/chat connection issue",
+      "use_case": "Call/chat disconnected before completion unintentionally.",
+      "includes": [
+        "connection issue incomplete contact"
+      ],
+      "does_not_include": [
+        "abrupt drop → Call/chat dropped"
+      ],
+      "keywords": [
+        "connection issue",
+        "انقطاع اتصال"
+      ]
+    },
+    {
+      "id": "other_incomplete_contact_call_chat_dropped",
+      "path": "Other > Incomplete Contact > Call/chat dropped",
+      "issue_category": "Other",
+      "sub_category": "Incomplete Contact",
+      "issue_type": "Call/chat dropped",
+      "use_case": "Persistent technical connection problem.",
+      "includes": [
+        "call dropped technical",
+        "chat dropped"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "call dropped",
+        "chat dropped",
+        "السطر قطع"
+      ]
+    },
+    {
+      "id": "other_contact_from_merchant",
+      "path": "Other > Contact from merchant",
+      "issue_category": "Other",
+      "sub_category": "Contact from merchant",
+      "issue_type": "Contact from merchant",
+      "use_case": "Contact initiated by a merchant rather than customer.",
+      "includes": [
+        "merchant contacted support"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "contact from merchant",
+        "تواصل تاجر"
+      ]
+    },
+    {
+      "id": "other_incomplete_contact_no_response_from_customer",
+      "path": "Other > Incomplete Contact > No response from customer",
+      "issue_category": "Other",
+      "sub_category": "Incomplete Contact",
+      "issue_type": "No response from customer",
+      "use_case": "Customer did not respond within expected timeframe.",
+      "includes": [
+        "no response from customer",
+        "no reply customer"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "no response",
+        "لا رد من العميل"
+      ]
+    },
+    {
+      "id": "other_test_contact",
+      "path": "Other > Test contact",
+      "issue_category": "Other",
+      "sub_category": "Test contact",
+      "issue_type": "Test contact",
+      "use_case": "Internal system/process test contact.",
+      "includes": [
+        "test contact internal"
+      ],
+      "does_not_include": [
+        "genuine customer interaction"
+      ],
+      "keywords": [
+        "test contact",
+        "تست"
+      ]
+    },
+    {
+      "id": "other_spam",
+      "path": "Other > Spam",
+      "issue_category": "Other",
+      "sub_category": "Spam",
+      "issue_type": "Spam",
+      "use_case": "Unsolicited non-support junk.",
+      "includes": [
+        "spam junk"
+      ],
+      "does_not_include": [
+        "misfiled unclear contacts"
+      ],
+      "keywords": [
+        "spam",
+        "سبام"
+      ]
+    },
+    {
+      "id": "other_vulnerable_customer_deceased_customer_case",
+      "path": "Other > Vulnerable Customer > Deceased Customer Case",
+      "issue_category": "Other",
+      "sub_category": "Vulnerable Customer",
+      "issue_type": "Deceased Customer Case",
+      "use_case": "Family/representative reporting account holder passed away.",
+      "includes": [
+        "notify death",
+        "close deceased account",
+        "outstanding balance deceased",
+        "stop communications deceased",
+        "death certificate documentation"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "deceased",
+        "وفاة",
+        "death certificate"
+      ]
+    },
+    {
+      "id": "other_vulnerable_customer_customer_with_total_physical_disability",
+      "path": "Other > Vulnerable Customer > Customer with total physical disability",
+      "issue_category": "Other",
+      "sub_category": "Vulnerable Customer",
+      "issue_type": "Customer with total physical disability",
+      "use_case": "Physical disability affecting independent use of Tamara.",
+      "includes": [
+        "help completing action disability",
+        "carer contacting on behalf",
+        "write-off waiver on behalf",
+        "permanent closure due to condition"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "physical disability",
+        "إعاقة"
+      ]
+    },
+    {
+      "id": "other_vulnerable_customer_customer_with_total_financial_disability",
+      "path": "Other > Vulnerable Customer > Customer with total financial disability",
+      "issue_category": "Other",
+      "sub_category": "Vulnerable Customer",
+      "issue_type": "Customer with total financial disability",
+      "use_case": "Severe financial hardship affecting payments.",
+      "includes": [
+        "lost job unable to pay",
+        "bankruptcy financial crisis",
+        "hardship arrangement freeze",
+        "unable to make any payments"
+      ],
+      "does_not_include": [
+        "technical pay error → Unable to Pay Pending Dues"
+      ],
+      "keywords": [
+        "financial hardship",
+        "hardship",
+        "إفلاس",
+        "تعثر مالي"
+      ]
+    },
+    {
+      "id": "other_fraudulent_misleading_ads",
+      "path": "Other > Fraudulent / Misleading Ads",
+      "issue_category": "Other",
+      "sub_category": "Fraudulent / Misleading Ads",
+      "issue_type": "Fraudulent / Misleading Ads",
+      "use_case": "Ad believed fraudulent inaccurate or impersonating Tamara.",
+      "includes": [
+        "ad offer not matching app",
+        "scam impersonation ad",
+        "misleading promotion terms",
+        "report suspicious ad using Tamara branding"
+      ],
+      "does_not_include": [
+        "general marketing feedback → Feedback About Tamara"
+      ],
+      "keywords": [
+        "misleading ads",
+        "fraudulent ads",
+        "إعلان مضلل"
+      ]
+    },
+    {
+      "id": "other_campaign_post",
+      "path": "Other > Campaign Post",
+      "issue_category": "Other",
+      "sub_category": "Campaign Post",
+      "issue_type": "Campaign Post",
+      "use_case": "Contact about a specific campaign post or promo.",
+      "includes": [
+        "reacting to campaign post",
+        "question about campaign offer",
+        "eligibility for campaign",
+        "should have received campaign benefit"
+      ],
+      "does_not_include": [
+        "fraudulent ad → Fraudulent / Misleading Ads",
+        "general marketing feedback → Feedback About Tamara"
+      ],
+      "keywords": [
+        "campaign post",
+        "حملة"
+      ]
+    },
+    {
+      "id": "other_competition_post_no_reply_needed",
+      "path": "Other > Competition Post > No Reply Needed",
+      "issue_category": "Other",
+      "sub_category": "Competition Post",
+      "issue_type": "No Reply Needed",
+      "use_case": "SM team resolving competition case that needs no reply.",
+      "includes": [
+        "competition post no reply"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "competition",
+        "مسابقة",
+        "no reply needed"
+      ]
+    },
+    {
+      "id": "outbound_outbound_calling_campaign",
+      "path": "Outbound > Outbound calling campaign",
+      "issue_category": "Outbound",
+      "sub_category": "Outbound calling campaign",
+      "issue_type": "Outbound calling campaign",
+      "use_case": "Tamara-initiated outbound calling campaign contact.",
+      "includes": [
+        "outbound campaign",
+        "survey call",
+        "proactive contact"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "outbound",
+        "حملة اتصال"
+      ]
+    },
+    {
+      "id": "payment_other",
+      "path": "Payment > Other",
+      "issue_category": "Payment",
+      "sub_category": "Other",
+      "issue_type": "Other",
+      "use_case": "General payment questions that fit no specific Payment sub-category.",
+      "includes": [
+        "how payments work generally",
+        "payment cycles schedules general",
+        "remaining outstanding dues",
+        "whether Tamara received payment"
+      ],
+      "does_not_include": [
+        "failed payment → Unable to Pay",
+        "autocharge",
+        "late fee",
+        "unrecognized charge",
+        "unrecorded payment",
+        "postpone",
+        "processing fees",
+        "chargeback",
+        "high down payment",
+        "murabha",
+        "card payment method"
+      ],
+      "keywords": [
+        "payment other",
+        "دفع عام"
+      ]
+    },
+    {
+      "id": "payment_high_downpayment",
+      "path": "Payment > High Downpayment",
+      "issue_category": "Payment",
+      "sub_category": "High Downpayment",
+      "issue_type": "High Downpayment",
+      "use_case": "Surprised by or questions about down payment amount.",
+      "includes": [
+        "down payment 50% or more",
+        "down payment changed between view and confirm",
+        "how down payment calculated",
+        "can down payment be reduced",
+        "down payment differs across merchants"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "high downpayment",
+        "down payment",
+        "دفعة أولى عالية"
+      ]
+    },
+    {
+      "id": "payment_autocharge_autocharge_date",
+      "path": "Payment > Autocharge > Autocharge date",
+      "issue_category": "Payment",
+      "sub_category": "Autocharge",
+      "issue_type": "Autocharge date",
+      "use_case": "Questions about autocharge date.",
+      "includes": [
+        "when autocharge debits",
+        "charged wrong date",
+        "charged before due date",
+        "change autocharge date"
+      ],
+      "does_not_include": [
+        "postpone payment → Postpone Payment"
+      ],
+      "keywords": [
+        "autocharge date",
+        "تاريخ خصم تلقائي"
+      ]
+    },
+    {
+      "id": "payment_autocharge_autocharge_amount",
+      "path": "Payment > Autocharge > Autocharge Amount",
+      "issue_category": "Payment",
+      "sub_category": "Autocharge",
+      "issue_type": "Autocharge Amount",
+      "use_case": "Questions about autocharge amount.",
+      "includes": [
+        "charged different amount",
+        "charged more than instalment",
+        "autocharge included late fees",
+        "partial autocharge"
+      ],
+      "does_not_include": [
+        "suspected fraud → Unrecognized Charge"
+      ],
+      "keywords": [
+        "autocharge amount",
+        "مبلغ الخصم التلقائي"
+      ]
+    },
+    {
+      "id": "payment_autocharge_autocharge_card",
+      "path": "Payment > Autocharge > Autocharge card",
+      "issue_category": "Payment",
+      "sub_category": "Autocharge",
+      "issue_type": "Autocharge card",
+      "use_case": "Which card used for autocharge.",
+      "includes": [
+        "change autocharge card",
+        "old card charged",
+        "expired card autocharge fail",
+        "update autocharge method"
+      ],
+      "does_not_include": [
+        "manual payment fail → Unable to Pay"
+      ],
+      "keywords": [
+        "autocharge card",
+        "بطاقة الخصم التلقائي"
+      ]
+    },
+    {
+      "id": "payment_autocharge_other",
+      "path": "Payment > Autocharge > Other",
+      "issue_category": "Payment",
+      "sub_category": "Autocharge",
+      "issue_type": "Other",
+      "use_case": "Autocharge issues not date/amount/card.",
+      "includes": [
+        "enable disable autocharge",
+        "how autocharge works",
+        "did not know autocharge active",
+        "autocharge all orders or specific"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "autocharge other",
+        "خصم تلقائي"
+      ]
+    },
+    {
+      "id": "payment_late_fee",
+      "path": "Payment > Late fee",
+      "issue_category": "Payment",
+      "sub_category": "Late fee",
+      "issue_type": "Late fee",
+      "use_case": "Questions/concerns about late fee.",
+      "includes": [
+        "why late fee",
+        "late fee incorrect",
+        "how late fee calculated",
+        "waive late fee",
+        "grace period late fee"
+      ],
+      "does_not_include": [
+        "riba shariah → Shariah compliance"
+      ],
+      "keywords": [
+        "late fee",
+        "رسوم تأخير",
+        "غرامة تأخير"
+      ]
+    },
+    {
+      "id": "payment_chargeback",
+      "path": "Payment > Chargeback",
+      "issue_category": "Payment",
+      "sub_category": "Chargeback",
+      "issue_type": "Chargeback",
+      "use_case": "Chargeback initiated or considered via bank.",
+      "includes": [
+        "filed chargeback",
+        "how to initiate chargeback",
+        "chargeback rejected",
+        "chargeback effect on account credit"
+      ],
+      "does_not_include": [
+        "unrecognized without chargeback → Unrecognized Charge",
+        "merchant fraud → Merchant Fraud"
+      ],
+      "keywords": [
+        "chargeback",
+        "charge back",
+        "اعتراض بنكي"
+      ]
+    },
+    {
+      "id": "payment_murabha_pay_by_finance_profit_rates",
+      "path": "Payment > Murabha - Pay By Finance > Profit Rates",
+      "issue_category": "Payment",
+      "sub_category": "Murabha - Pay By Finance",
+      "issue_type": "Profit Rates",
+      "use_case": "Questions about Murabha profit rate.",
+      "includes": [
+        "what profit rate",
+        "APR",
+        "total repayment higher than expected",
+        "fixed or variable profit",
+        "principal vs profit breakdown",
+        "compare to bank loan rate"
+      ],
+      "does_not_include": [
+        "halal → Shariah compliance"
+      ],
+      "keywords": [
+        "profit rate",
+        "apr",
+        "نسبة الربح",
+        "murabaha rate"
+      ]
+    },
+    {
+      "id": "payment_murabha_pay_by_finance_early_settlement",
+      "path": "Payment > Murabha - Pay By Finance > Early Settlement",
+      "issue_category": "Payment",
+      "sub_category": "Murabha - Pay By Finance",
+      "issue_type": "Early Settlement",
+      "use_case": "Settle Murabha balance early.",
+      "includes": [
+        "pay off remaining early",
+        "how to request early settlement",
+        "amount for early settlement",
+        "discount for settling early",
+        "early settlement credit score"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "early settlement",
+        "سداد مبكر"
+      ]
+    },
+    {
+      "id": "payment_payment_methods_card_is_not_accepted",
+      "path": "Payment > Payment Methods > Card is not accepted",
+      "issue_category": "Payment",
+      "sub_category": "Payment Methods",
+      "issue_type": "Card is not accepted",
+      "use_case": "Card rejected or not working on Tamara.",
+      "includes": [
+        "error adding card",
+        "card type not supported",
+        "card rejected checkout payment",
+        "card works elsewhere not Tamara"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "card not accepted",
+        "بطاقة مرفوضة"
+      ]
+    },
+    {
+      "id": "payment_payment_methods_how_to_add_remove_a_card",
+      "path": "Payment > Payment Methods > How to add/remove a card",
+      "issue_category": "Payment",
+      "sub_category": "Payment Methods",
+      "issue_type": "How to add/remove a card",
+      "use_case": "Help managing payment cards.",
+      "includes": [
+        "add debit credit card",
+        "remove old expired card",
+        "which card types accepted",
+        "cannot find add remove cards in app"
+      ],
+      "does_not_include": [
+        "change autocharge card → Autocharge Card"
+      ],
+      "keywords": [
+        "add card",
+        "remove card",
+        "إضافة بطاقة",
+        "حذف بطاقة"
+      ]
+    },
+    {
+      "id": "payment_unrecognized_charge_suspected_fraud",
+      "path": "Payment > Unrecognized charge > Suspected fraud",
+      "issue_category": "Payment",
+      "sub_category": "Unrecognized charge",
+      "issue_type": "Suspected fraud",
+      "use_case": "Unauthorized Tamara charge believed fraudulent.",
+      "includes": [
+        "tamara charge not initiated",
+        "someone used card for Tamara",
+        "charges on card never registered"
+      ],
+      "does_not_include": [
+        "recognized after explanation → Explained to customer",
+        "national id account fraud → National ID Fraud"
+      ],
+      "keywords": [
+        "unrecognized charge fraud",
+        "خصم غير معروف احتيال"
+      ]
+    },
+    {
+      "id": "payment_unrecognized_charge_duplicate_charge",
+      "path": "Payment > Unrecognized charge > Duplicate charge",
+      "issue_category": "Payment",
+      "sub_category": "Unrecognized charge",
+      "issue_type": "Duplicate charge",
+      "use_case": "Charged more than once for same transaction/instalment.",
+      "includes": [
+        "charged twice same instalment",
+        "manual pay and autocharge same amount",
+        "two identical tamara debits"
+      ],
+      "does_not_include": [
+        "does not recognize at all → Suspected Fraud"
+      ],
+      "keywords": [
+        "duplicate charge",
+        "خصم مكرر"
+      ]
+    },
+    {
+      "id": "payment_unrecognized_charge_explained_to_customer_no_issue",
+      "path": "Payment > Unrecognized charge > Explained to customer (no issue)",
+      "issue_category": "Payment",
+      "sub_category": "Unrecognized charge",
+      "issue_type": "Explained to customer (no issue)",
+      "use_case": "Unrecognized charge found valid after investigation.",
+      "includes": [
+        "did not recognize descriptor valid instalment",
+        "forgot scheduled payment",
+        "confused by billing descriptor"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "explained no issue",
+        "clarified charge"
+      ]
+    },
+    {
+      "id": "payment_unrecorded_charges_payment_authorization_failed",
+      "path": "Payment > Unrecorded charges > Payment authorization failed",
+      "issue_category": "Payment",
+      "sub_category": "Unrecorded charges",
+      "issue_type": "Payment authorization failed",
+      "use_case": "Payment failed authorization but bank shows deduction/pending.",
+      "includes": [
+        "bank deduction tamara shows failed",
+        "funds deducted payment not recorded",
+        "pending charge not confirmed released"
+      ],
+      "does_not_include": [
+        "successful not updated → Payment Not Reflected"
+      ],
+      "keywords": [
+        "authorization failed",
+        "فشل التفويض"
+      ]
+    },
+    {
+      "id": "payment_unrecorded_charges_payment_not_reflected",
+      "path": "Payment > Unrecorded charges > Payment not reflected",
+      "issue_category": "Payment",
+      "sub_category": "Unrecorded charges",
+      "issue_type": "Payment not reflected",
+      "use_case": "Payment made successfully but not yet in Tamara.",
+      "includes": [
+        "bank transfer not showing",
+        "proof of payment still unpaid",
+        "paid in app balance not updated",
+        "payment hours days not reflected"
+      ],
+      "does_not_include": [
+        "bank deduction tamara failed → Authorization Failed"
+      ],
+      "keywords": [
+        "payment not reflected",
+        "الدفعة ما ظهرت"
+      ]
+    },
+    {
+      "id": "payment_unrecorded_charges_other_unrecorded_charge_issues",
+      "path": "Payment > Unrecorded charges > Other unrecorded charge issues",
+      "issue_category": "Payment",
+      "sub_category": "Unrecorded charges",
+      "issue_type": "Other unrecorded charge issues",
+      "use_case": "Unrecorded charge issues not fitting other sub-categories.",
+      "includes": [
+        "other unrecorded charge"
+      ],
+      "does_not_include": [
+        "authorization failed",
+        "payment not reflected"
+      ],
+      "keywords": [
+        "unrecorded other"
+      ]
+    },
+    {
+      "id": "payment_postpone_payment",
+      "path": "Payment > Postpone payment",
+      "issue_category": "Payment",
+      "sub_category": "Postpone payment",
+      "issue_type": "Postpone payment",
+      "use_case": "Delay or reschedule upcoming payment.",
+      "includes": [
+        "how to postpone instalment",
+        "is postpone possible conditions",
+        "postpone fee",
+        "postpone again",
+        "how many times postpone"
+      ],
+      "does_not_include": [
+        "technical pay error → Unable to Pay"
+      ],
+      "keywords": [
+        "postpone payment",
+        "تأجيل دفعة"
+      ]
+    },
+    {
+      "id": "payment_customer_processing_fees",
+      "path": "Payment > Customer Processing Fees",
+      "issue_category": "Payment",
+      "sub_category": "Customer Processing Fees",
+      "issue_type": "Customer Processing Fees",
+      "use_case": "Questions about processing fee on order.",
+      "includes": [
+        "why processing fee",
+        "unexpected fee explained",
+        "is processing fee refundable",
+        "compare competitor fees"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "processing fee",
+        "رسوم معالجة"
+      ]
+    },
+    {
+      "id": "payment_unable_to_pay_pending_dues",
+      "path": "Payment > Unable to pay pending dues",
+      "issue_category": "Payment",
+      "sub_category": "Unable to pay pending dues",
+      "issue_type": "Unable to pay pending dues",
+      "use_case": "Difficulty paying due instalments.",
+      "includes": [
+        "pay error card decline timeout",
+        "pay now greyed out page fail",
+        "unable apple pay",
+        "payment method not accepted for instalments",
+        "sufficient funds still unable"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "unable to pay",
+        "can't pay",
+        "ما أقدر أدفع",
+        "pay now error"
+      ]
+    },
+    {
+      "id": "promotions_cashback_cashback",
+      "path": "Promotions & Cashback > Cashback",
+      "issue_category": "Promotions & Cashback",
+      "sub_category": "Cashback",
+      "issue_type": "Cashback",
+      "use_case": "Questions/concerns about cashback.",
+      "includes": [
+        "did not receive cashback",
+        "when cashback credited",
+        "cashback terms",
+        "less cashback than expected",
+        "cashback merchant order campaign"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "cashback",
+        "كاش باك",
+        "استرداد نقدي"
+      ]
+    },
+    {
+      "id": "promotions_cashback_discount",
+      "path": "Promotions & Cashback > Discount",
+      "issue_category": "Promotions & Cashback",
+      "sub_category": "Discount",
+      "issue_type": "Discount",
+      "use_case": "Discount or promo code issues.",
+      "includes": [
+        "promo code not working",
+        "current promotions",
+        "discount not applied",
+        "promotional message cannot access offer"
+      ],
+      "does_not_include": [
+        "cashback after purchase → Cashback"
+      ],
+      "keywords": [
+        "discount",
+        "promo code",
+        "كود خصم",
+        "عرض"
+      ]
+    },
+    {
+      "id": "refunds_and_cancellations_how_to_return_cancel_an_order_or_item",
+      "path": "Refunds and Cancellations > How to return/cancel an order or item",
+      "issue_category": "Refunds and Cancellations",
+      "sub_category": "How to return/cancel an order or item",
+      "issue_type": "How to return/cancel an order or item",
+      "use_case": "Guidance on how to return/cancel; informational only.",
+      "includes": [
+        "how to initiate return cancel",
+        "merchant return policy tamara",
+        "partial cancel",
+        "what happens to instalment if return",
+        "return window deadline"
+      ],
+      "does_not_include": [
+        "already submitted not actioned → Return/Cancellation Not Processed"
+      ],
+      "keywords": [
+        "how to cancel",
+        "how to return",
+        "كيفية الإلغاء",
+        "كيفية الإرجاع"
+      ]
+    },
+    {
+      "id": "refunds_and_cancellations_merchant_incorrectly_canceled_the_order_item",
+      "path": "Refunds and Cancellations > Merchant incorrectly canceled the order/item",
+      "issue_category": "Refunds and Cancellations",
+      "sub_category": "Merchant incorrectly canceled the order/item",
+      "issue_type": "Merchant incorrectly canceled the order/item",
+      "use_case": "Merchant canceled without customer request/consent.",
+      "includes": [
+        "canceled without notice",
+        "cancellation confirmation not requested",
+        "why merchant canceled",
+        "refund after unwanted cancel",
+        "reinstate incorrectly canceled"
+      ],
+      "does_not_include": [
+        "customer requested not processed → Return/Cancellation Not Processed"
+      ],
+      "keywords": [
+        "merchant incorrectly canceled",
+        "التاجر ألغى بالخطأ"
+      ]
+    },
+    {
+      "id": "refunds_and_cancellations_incorrect_refund_amount",
+      "path": "Refunds and Cancellations > Incorrect refund amount",
+      "issue_category": "Refunds and Cancellations",
+      "sub_category": "Incorrect refund amount",
+      "issue_type": "Incorrect refund amount",
+      "use_case": "Refund amount does not match expectation.",
+      "includes": [
+        "refund less than item price",
+        "refund reduced by unexpected fees",
+        "returned multiple only some refunded",
+        "partial refund no explanation",
+        "unexpected unsolicited refund"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "incorrect refund amount",
+        "مبلغ استرداد غلط",
+        "partial refund wrong"
+      ]
+    },
+    {
+      "id": "refunds_and_cancellations_late_refund_refund_failed",
+      "path": "Refunds and Cancellations > Late Refund > Refund failed",
+      "issue_category": "Refunds and Cancellations",
+      "sub_category": "Late Refund",
+      "issue_type": "Refund failed",
+      "use_case": "Refund initiated but failed to reach account.",
+      "includes": [
+        "told processed money never arrived",
+        "bank confirms no refund",
+        "refund showing failed"
+      ],
+      "does_not_include": [
+        "processed cannot locate → Refund Already Processed"
+      ],
+      "keywords": [
+        "refund failed",
+        "فشل الاسترداد"
+      ]
+    },
+    {
+      "id": "refunds_and_cancellations_late_refund_refund_already_processed",
+      "path": "Refunds and Cancellations > Late Refund > Refund already processed",
+      "issue_category": "Refunds and Cancellations",
+      "sub_category": "Late Refund",
+      "issue_type": "Refund already processed",
+      "use_case": "Asking about refund already processed on Tamara side.",
+      "includes": [
+        "believe not received but sent to bank card wallet",
+        "help locating refund bank statement",
+        "refund to old expired card",
+        "ARN",
+        "refund status"
+      ],
+      "does_not_include": [
+        "initiated failed → Refund Failed"
+      ],
+      "keywords": [
+        "refund already processed",
+        "refund arn",
+        "تم الاسترداد",
+        "حقك محفوظ"
+      ]
+    },
+    {
+      "id": "refunds_and_cancellations_late_refund_refund_not_processed",
+      "path": "Refunds and Cancellations > Late Refund > Refund not processed",
+      "issue_category": "Refunds and Cancellations",
+      "sub_category": "Late Refund",
+      "issue_type": "Refund not processed",
+      "use_case": "Waiting for refund not yet processed by Tamara.",
+      "includes": [
+        "estimated timeframe passed no refund",
+        "why refund taking longer",
+        "merchant-confirmed return tamara not processed refund"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "refund not processed",
+        "الاسترداد ما تم",
+        "waiting refund",
+        "late refund",
+        "refund not received",
+        "ما وصل الاسترداد",
+        "refund delayed"
+      ]
+    },
+    {
+      "id": "refunds_and_cancellations_wallet_refund",
+      "path": "Refunds and Cancellations > Wallet refund",
+      "issue_category": "Refunds and Cancellations",
+      "sub_category": "Wallet refund",
+      "issue_type": "Wallet refund",
+      "use_case": "Refund credited to Tamara wallet questions.",
+      "includes": [
+        "how to use wallet balance",
+        "wallet refund to bank card instead",
+        "wallet balance not matching refund",
+        "why refund to wallet not original method"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "wallet refund",
+        "استرداد محفظة"
+      ]
+    },
+    {
+      "id": "refunds_and_cancellations_refund_blocked_by_merchant",
+      "path": "Refunds and Cancellations > Refund Blocked by Merchant",
+      "issue_category": "Refunds and Cancellations",
+      "sub_category": "Refund Blocked by Merchant",
+      "issue_type": "Refund Blocked by Merchant",
+      "use_case": "Refund cannot process because merchant blocked/unable.",
+      "includes": [
+        "merchant unable to process refund",
+        "merchant blocked from issuing refund",
+        "request Tamara process refund on behalf"
+      ],
+      "does_not_include": [
+        "merchant not blocked just not processed → Return/Cancellation Not Processed"
+      ],
+      "keywords": [
+        "refund blocked",
+        "الاسترداد محظور"
+      ]
+    },
+    {
+      "id": "smart_membership_about_tamara_smart_membership_benefits",
+      "path": "Smart Membership > About Tamara Smart Membership & Benefits",
+      "issue_category": "Smart Membership",
+      "sub_category": "About Tamara Smart Membership & Benefits",
+      "issue_type": "About Tamara Smart Membership & Benefits",
+      "use_case": "General questions about Smart Membership.",
+      "includes": [
+        "what is smart membership",
+        "benefits perks",
+        "differs from standard",
+        "cost auto-renew",
+        "merchants categories covered",
+        "available in country"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "smart membership",
+        "سمارت",
+        "عضوية سمارت"
+      ]
+    },
+    {
+      "id": "smart_membership_how_to_subscribe",
+      "path": "Smart Membership > How to subscribe",
+      "issue_category": "Smart Membership",
+      "sub_category": "How to subscribe",
+      "issue_type": "How to subscribe",
+      "use_case": "Sign up for Smart Membership or subscription issues.",
+      "includes": [
+        "how to subscribe",
+        "subscribe error",
+        "charged membership not active",
+        "trial promotional smart"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "subscribe smart",
+        "اشتراك سمارت"
+      ]
+    },
+    {
+      "id": "smart_membership_how_to_unsubscribe",
+      "path": "Smart Membership > How to unsubscribe",
+      "issue_category": "Smart Membership",
+      "sub_category": "How to unsubscribe",
+      "issue_type": "How to unsubscribe",
+      "use_case": "Cancel Smart Membership subscription.",
+      "includes": [
+        "how to unsubscribe",
+        "unsubscribe not going through",
+        "charged after unsubscribed",
+        "refund remaining membership",
+        "notice period cancel"
+      ],
+      "does_not_include": [
+        "close entire account → Delete Account"
+      ],
+      "keywords": [
+        "unsubscribe smart",
+        "إلغاء سمارت"
+      ]
+    },
+    {
+      "id": "smart_membership_statement",
+      "path": "Smart Membership > Statement",
+      "issue_category": "Smart Membership",
+      "sub_category": "Statement",
+      "issue_type": "Statement",
+      "use_case": "Smart Membership statement/billing questions.",
+      "includes": [
+        "did not receive statement",
+        "incorrect statement amount",
+        "unexpected membership fee",
+        "next billing cycle",
+        "how smart billing works"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "smart statement",
+        "كشف سمارت"
+      ]
+    },
+    {
+      "id": "smart_membership_statement_snooze_statement",
+      "path": "Smart Membership > Statement > Snooze Statement",
+      "issue_category": "Smart Membership",
+      "sub_category": "Statement",
+      "issue_type": "Snooze Statement",
+      "use_case": "Snooze Statement feature questions/issues.",
+      "includes": [
+        "what is snooze statement",
+        "cannot find snooze",
+        "snooze did not apply",
+        "how many times snooze",
+        "snooze fee condition"
+      ],
+      "does_not_include": [],
+      "keywords": [
+        "snooze statement",
+        "تأجيل كشف"
+      ]
+    }
+  ]
+}

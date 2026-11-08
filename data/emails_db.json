@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "notes": "Approved-style Voice Care email templates. CX-sensitive fields left blank for the agent to fill. No real customer data.",
+  "emails": [
+    {
+      "id": "partial_refund_late_paid_more",
+      "title": "Partial refund — paid more than refund (late refund)",
+      "when_to_use": "CX asking about a late refund after a partial refund, when amount paid is more than the refunded amount.",
+      "source_lang": "ar",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلكم مع تمارا.\n\nلاحظنا إنك طلبت استرجاع لمبلغ طلبك بتاريخ .\nالاسترجاع ياخذ حتى ٧ أيام عشان يوصلك في حسابك البنكي، بس ممكن يختلف حسب إجراءات البنك اللي تتعامل معه.\nنطلب منك الانتظار لين تنتهي هالفترة، وبعدها تأكد من كشف حسابك البنكي.\n\nوتقدر تتابع الاسترداد داخل التطبيق:\nالطلبات > عرض التفاصيل > حالة الإسترجاع.\nراح تلقى هناك الرقم المرجعي للاسترداد (ARN)، واللي تقدر تشاركه مع بنكك للمتابعة إذا احتجت.\n\nأي خدمة ثانية؟ حنا موجودين.",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nWe noticed you requested a refund for your order on .\nRefunds usually take up to 7 days to appear in your bank account, but this may vary depending on your bank's processing times.\nPlease wait until this period has passed, then check your bank statement.\n\nYou can also track the refund in the Tamara app:\nOrders > View Details > Refund Status.\nThere you will find the refund reference number (ARN), which you can share with your bank if you need to follow up.\n\nIs there anything else we can help with? We're here for you."
+    },
+    {
+      "id": "partial_refund_plan_adjusted",
+      "title": "Partial refund — plan adjusted (paid less than remaining)",
+      "when_to_use": "CX asking why they are not receiving a refund after a partial refund; remaining amount is higher than what was paid so far (plan adjusted).",
+      "source_lang": "ar",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلكم مع تمارا.\n\nبعد ما راجعنا المبلغ المعدل لطلبك  بعد الاسترجاع الجزئي، طلع إن المبلغ المتبقي أعلى من اللي تم دفعه حتى الآن.\nيعني لسه في دفعات باقيه لتكملة قيمة الطلب.\n\nبإمكانك الإطلاع على خطة الدفع المحدثة من خلال حسابك في تطبيق تمارا، أو الموقع الإلكتروني.\n\nملخص الطلب:\n- قيمة الطلب الحالية بعد التعديل: \n- قيمة المنتجات المستردة/الملغية: \n- المبلغ المدفوع من قبلك: \n- المبلغ المتبقي للسداد: \n\nأي خدمة ثانية؟ حنا موجودين.",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nAfter reviewing the adjusted amount for your order  following the partial refund, the remaining balance is higher than what has been paid so far.\nThis means there are still installments left to complete the order value.\n\nYou can view the updated payment plan from your Tamara app account or the website.\n\nOrder summary:\n- Current order value after adjustment: \n- Value of refunded/cancelled items: \n- Amount paid by you: \n- Remaining amount to pay: \n\nIs there anything else we can help with? We're here for you."
+    },
+    {
+      "id": "full_refund_late",
+      "title": "Full refund — late / not receiving refund",
+      "when_to_use": "CX asking about a late refund or not receiving a full refund.",
+      "source_lang": "en",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nDo not worry! An amount of  has been refunded on  to the same card used on payment.\nPlease note that it may take your bank up to 7 days to show the amount in the bank statement, depending on the bank's processing time.\n\nYou can contact your bank with the following reference number (ARN)  to track the refund.\n\nYou can always track the refund status from the refund status screen in your app:\nOrders > View Details > Refund Status.\n\nIf you have any further inquiries, please don't hesitate to contact us.",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلكم مع تمارا.\n\nلا تشيل هم! تم استرجاع مبلغ  بتاريخ  إلى نفس البطاقة المستخدمة في الدفع.\nيرجى ملاحظة أنه قد يستغرق ظهور المبلغ في كشف حسابك البنكي حتى ٧ أيام، حسب إجراءات البنك.\n\nتقدر تتواصل مع بنكك باستخدام الرقم المرجعي التالي (ARN)  لمتابعة الاسترداد.\n\nوتقدر دائمًا تتابع حالة الاسترداد من شاشة حالة الاسترجاع في التطبيق:\nالطلبات > عرض التفاصيل > حالة الإسترجاع.\n\nإذا عندك أي استفسار ثاني، لا تتردد في التواصل معنا."
+    },
+    {
+      "id": "ask_for_evidence_general",
+      "title": "Ask for evidence (general)",
+      "when_to_use": "Any case where CX states they see something on their end that does not appear on ours; agent fills what evidence is needed.",
+      "source_lang": "both",
+      "email_en": "Hi,\nThanks for reaching out.\n\nWe apologize for the issue you are experiencing with your order.\nCould you please provide the below information to assist in our investigation:\n\n\n\nOnce we have the needed information, we will promptly assist you with the issue you are facing.\nTo make sure we actively work on your case, could you please provide the information required within 5 days?\n\nWaiting for your reply.",
+      "email_ar": "يا هلا وسهلا،\nشكرًا لتواصلك معنا.\n\nنعتذر عن الإشكالية التي تواجهها مع طلبك.\nيرجى إرسال المعلومات التالية لتساعدنا في حل الإشكالية:\n\n\n\nبمجرد حصولنا على المعلومات المطلوبة، سنساعدك على الفور في حل المشكلة التي تواجهها.\nيرجى تزويدنا بالمعلومات المطلوبة في خلال 5 أيام.\n\nبانتظار ردك، لا تتردد في التواصل معنا."
+    },
+    {
+      "id": "compensation_technical_issue",
+      "title": "Compensation — technical issue (order blocked)",
+      "when_to_use": "Technical issue prevented completing an order; installment created manually and compensation added.",
+      "source_lang": "ar",
+      "email_ar": "هلا،\nنعتذر عن الإشكالية اللي واجهتك.\n\nلاحظنا إنك حاولت إكمال طلب  من  باستخدام ، لكن العملية ما تمت بسبب مشكلة تقنية.\nولأننا نحرص إن تجربتك معنا تكون الأفضل، أنشأنا القسط يدويًا وطلبك بيتم بشكل طبيعي ونرى إنك قمت بسدادها بالفعل.\n\nوكعربون تقدير واعتذار، أضفنا لك تعويض بسيط بقيمة  في محفظة تمارا.\n\nإذا لديك أي استفسار آخر لا تتردد في التواصل معنا.\nفريق دعم تمارا",
+      "email_en": "Hi,\nWe apologize for the issue you faced.\n\nWe noticed you tried to complete order  from  using , but the transaction could not be completed due to a technical issue.\nTo make sure your experience with us stays smooth, we created the installment manually and your order will proceed normally — and we can see that you have already paid it.\n\nAs a gesture of appreciation and apology, we have added a small compensation of  to your Tamara wallet.\n\nIf you have any further questions, please don't hesitate to contact us.\nTamara Support Team"
+    },
+    {
+      "id": "compensation_smart_mistaken_opt_in",
+      "title": "Compensation — Smart (mistaken opt-in, no benefits)",
+      "when_to_use": "CX opted into Smart by mistake and received no benefits; compensation offered.",
+      "source_lang": "ar",
+      "email_ar": "هلا،\nنعتذر عن الإشكالية اللي واجهتك.\n\nكعربون تقدير واعتذار، أضفنا لك تعويض بسيط بقيمة  في محفظة تمارا.\n\nإذا لديك أي استفسار آخر لا تتردد في التواصل معنا.\nفريق دعم تمارا",
+      "email_en": "Hi,\nWe apologize for the issue you faced.\n\nAs a gesture of appreciation and apology, we have added a small compensation of  to your Tamara wallet.\n\nIf you have any further questions, please don't hesitate to contact us.\nTamara Support Team"
+    },
+    {
+      "id": "partner_stores",
+      "title": "Who are your partners / merchant installments",
+      "when_to_use": "CX asking how to purchase something with Tamara, or whether a merchant offers Tamara installments.",
+      "source_lang": "both",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلكم مع تمارا.\n\nعشان تلقى خيارك، وفرنا لك تمارا في العديد من المتاجر أونلاين وداخل المتجر.\nقائمة شركائنا تتنوع بين الإلكترونيات، الجمال، المنزل، المعاهد، النوادي الرياضية وغيرها.\n\nتقدر تشيك على قائمة شركائنا من هنا:\nhttps://tamara.co/stores\n\nوتابعنا على إكس:\nhttps://x.com/useTamara\n\nوإنستقرام:\nhttps://instagram.com/usetamara?utm_medium=copy_link\nلمعرفة أحدث شراكاتنا.\n\nإذا لديك أي استفسار آخر لا تتردد في التواصل معنا.\nفريق دعم تمارا",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nWe've partnered with a wide range of stores online and in-store.\nOur partners range from electronics, beauty, home, sports, and more, so we can ensure you never run short of options.\n\nVisit our store directory to check out our partners:\nhttps://tamara.co/en/stores\n\nFollow us on X:\nhttps://x.com/useTamara\n\nInstagram:\nhttps://instagram.com/usetamara?utm_medium=copy_link\nto stay updated on our latest new stores.\n\nHave a wonderful day."
+    },
+    {
+      "id": "dispute_ask_for_evidence",
+      "title": "Dispute order — ask for evidence (raise claim)",
+      "when_to_use": "Ask CX for evidence to raise a claim and attach files.",
+      "source_lang": "both",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nWe apologize for the issue you are experiencing with your order.\nCould you please provide the below information to assist in our investigation:\n\n- A copy of the cancellation/return or refund request or communication with the Store should show the Order ID and date of request.\n- A copy/screenshot of the Store’s cancellation, return, and refund policy or an online link to the policy.\n- Please advise if you are requesting a partial or a full cancellation/refund.\n\nOnce we have the needed information, we will promptly assist you with your issue.\nTo ensure we can actively work on your case, could you please provide the required information within 5 days.\n\nWaiting for your reply.",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلك مع تمارا.\n\nنعتذر عن الإشكالية التي تواجهها مع طلبك.\nيرجى إرسال المعلومات التالية لتساعدنا في حل الإشكالية:\n\n- نسخة/لقطة شاشة للطلب مذكور فيه رقم الطلب، المنتجات، الكميات وتاريخ المحدد للتوصيل.\n- إذا كانت بعض الأغراض مفقودة، يرجى إرسال صورة المنتجات التي تم استلامها.\n- نسخة/لقطة شاشة لرسائلك/محادثاتك مع المتجر، مذكور فيه المنتجات، الكميات وتاريخ المحدد للتوصيل.\n\nبمجرد حصولنا على المعلومات المطلوبة، سنساعدك على الفور في حل المشكلة التي تواجهها.\nيرجى تزويدنا بالمعلومات المطلوبة في خلال 5 أيام.\n\nبانتظار ردك، لا تتردد في التواصل معنا."
+    },
+    {
+      "id": "prequal_limit",
+      "title": "Prequal — how to know my limit",
+      "when_to_use": "CX asking how they can know their purchase limit / pre-approval.",
+      "source_lang": "ar",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلكم مع تمارا.\n\nمعرفة حد الشراء الخاص بك صارت أسهل!\nميزة الموافقة المسبقة في تطبيق تمارا تفحص ملفك المالي في ثواني وتطلع لك المبلغ المتاح لك قبل ما تطلب.\n\nخطوات الحصول على الموافقة المسبقة:\n1- في تطبيق تمارا، اضغط على \"الموافقة المسبقة\" أو \"احصل على الموافقة المسبقة\" من الصفحة الرئيسية، أو صفحة المتجر، وأحيانًا تلاقيها عند الدفع.\n2- ممكن نطلب منك توثيق هويتك أو إضافة بطاقة دفع للتحقق من أهليتك.\n3- اختر المتجر اللي تبغى تتسوق منه وأدخل المبلغ اللي حاب تنفقه. وإذا ما عبّيت الاستبيان من قبل، قد نطلب منك الإجابة على كم سؤال سريع.\n4- بيبين معك المبلغ المعتمد مباشرة في الصفحة الرئيسية، مع وقت يوضح كم باقي لك عشان تستخدمه والخطط المتاحة.\n5- أمورك تمام، توجه للمتجر واستمتع بتسوقك مع تمارا قبل ما ينتهي الوقت.\n\nوإذا ظهرت لك رسالة \"عدد محاولات أكثر من المسموح\"، لا تشيل هم وجرب في وقت ثاني ابتداءً من الشهر الجاي.\n\nأي خدمة ثانية؟ حنا موجودين.",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nChecking your purchase limit is now easier!\nThe Pre-approval feature in the Tamara app reviews your financial profile in seconds and shows you the amount available before you place an order.\n\nSteps to get Pre-approval:\n1- In the Tamara app, tap \"Pre-approval\" or \"Get Pre-approval\" from the home screen, the store page, or sometimes at checkout.\n2- We may ask you to verify your identity or add a payment card to confirm eligibility.\n3- Choose the store you want to shop from and enter the amount you plan to spend. If you haven't completed the questionnaire before, we may ask a few quick questions.\n4- Your approved amount will appear directly on the home screen, along with the time left to use it and the available plans.\n5- You're all set — head to the store and enjoy shopping with Tamara before the time expires.\n\nIf you see a message saying you've exceeded the allowed number of attempts, don't worry — try again starting next month.\n\nIs there anything else we can help with? We're here for you."
+    },
+    {
+      "id": "troubleshooting_app_l1",
+      "title": "Troubleshooting — app technical issue (L1)",
+      "when_to_use": "First-layer troubleshooting when CX has any technical issue in the app.",
+      "source_lang": "ar",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلكم مع تمارا.\n\nلحل المشكلة التقنية اللي تواجهك يرجى التأكد من:\n1- تحديث جوالك.\n2- تحديث تطبيق تمارا.\n3- تسجيل الدخول من خلال موقع تمارا.\n4- المحاولة مرة أخرى بعد 24 ساعة.\n\nأي خدمة ثانية؟ حنا موجودين.",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nTo help resolve the technical issue you're facing, please make sure to:\n1- Update your phone.\n2- Update the Tamara app.\n3- Log in through the Tamara website.\n4- Try again after 24 hours.\n\nIs there anything else we can help with? We're here for you."
+    },
+    {
+      "id": "pif_no_installments",
+      "title": "PIF — Pay in Full (no installment options)",
+      "when_to_use": "CX is upset about getting no installment options / only Pay in Full.",
+      "source_lang": "ar",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلكم مع تمارا.\n\nنعتذر عن الإشكالية التي قد تكون واجهتك.\nعدم ظهور خيار التقسيط يعتمد على النقاط التالية:\n\n- خيارات دفع تمارا المتوفرة لدى التاجر\n- قيمة الطلب أعلى من الحد المسموح لخيار التقسيط\n\nوفي حال عدم ظهور خيار التقسيط عند كل المتاجر، نعتذر منك فحسابك غير مؤهل لهذه الخدمة في الوقت الحالي،\nحيث تعتمد الأهلية على:\n\n- تاريخك في الدفع مع تمارا\n- تاريخ الدفع والتقييم الائتماني لدى سمه/الاتحاد/ساينت (CINET)\n\nعند اختيارك \"ادفعها كاملة\"، ستحصل على استرداد نقدي في محفظة تمارا، بالإضافة إلى الاستفادة من برنامج حماية المشتري.\nتقدر تعرف تفاصيل أكثر من هنا:\nhttps://support.tamara.co/ar/articles/7GkW6LcmPJn25QQbknSDVy-pay-in-full\n\nنتمنى أن نكون قد جاوبنا على استفسارك.\nأي خدمة ثانية؟ حنا موجودين.",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nWe apologize for the issue you may have faced.\nInstallment options may not appear due to the following:\n\n- The Tamara payment options available at the merchant\n- The order value being above the allowed limit for installments\n\nIf installment options are not showing at any merchants, we apologize — your account is not eligible for this service at the moment.\nEligibility depends on:\n\n- Your payment history with Tamara\n- Your payment history and credit assessment with SIMAH / Al Ittihad / CINET\n\nWhen you choose \"Pay in Full\", you get cashback in your Tamara wallet, plus Buyer Protection benefits.\nYou can learn more here:\nhttps://support.tamara.co/ar/articles/7GkW6LcmPJn25QQbknSDVy-pay-in-full\n\nWe hope this answers your question.\nIs there anything else we can help with? We're here for you."
+    },
+    {
+      "id": "dispute_claim_steps",
+      "title": "Dispute — claim steps",
+      "when_to_use": "Explain how CX can raise a claim in the app when the store does not resolve the order issue.",
+      "source_lang": "both",
+      "email_ar": "هلا وسهلا،\nشكرًا لتواصلكم مع تمارا.\n\nإذا ما تجاوب معك المتجر لحل مشكلة الطلب، تقدر ترفع مطالبة بكل سهولة من خلال تطبيق تمارا بعد مرور 72 ساعة من إنشاء الطلب.\n\nالطريقة:\n١ ـ سجل دخولك في تطبيق تمارا\n٢ ـ توجه لخانة \"مشترياتي\"\n٣ ـ اختر الطلب اللي تحتاج مساعدة فيه\n٤ ـ في صفحة تفاصيل الطلب، انزل للأسفل واضغط على \"تواصل مع دعم تمارا\"\n٥ ـ اختر المشكلة اللي تواجهها مع طلبك\n٦ ـ املأ كل البيانات والتفاصيل المطلوبة مثل الفواتير، الصور، والرسائل مع المتجر\n٧ ـ اضغط على \"إرسال\"\n\nوبكذا تقدر تتابع حالة المطالبة اللي رفعتها.\n\nأي خدمة ثانية؟ حنا موجودين.",
+      "email_en": "Hi,\nThank you for contacting Tamara.\n\nIf you're unable to reach the store regarding an issue with your order, you can easily raise a claim directly through the Tamara App after 72 hours of placing the order.\n\nHere’s how:\n1. Log in to your Tamara account.\n2. Go to My Purchases (or Transactions for Smart members).\n3. Select the order you need help with.\n4. On the order details page, scroll down and click on \"Get help from Tamara\".\n5. Choose the issue you're facing with your order.\n6. Fill in all required details and upload any relevant documents (e.g., receipts, photos, or communications with the store).\n7. Press Submit.\n\nThat way you will have visibility on the progress of your request.\n\nNeed further assistance? We're here!"
+    },
+    {
+      "id": "ticket_escalated_l2",
+      "title": "Ticket escalated (Layer 2)",
+      "when_to_use": "Issue escalated to Layer 2 (Tech / Trust & Safety / Collections / etc.).",
+      "source_lang": "both",
+      "email_en": "Hey!\nThanks for reaching out.\n\nWe sincerely apologize for the problem you are facing.\nWe raised a request to our team to solve it as soon as possible.\n\nThank you for understanding.\nPlease don't hesitate to reach out with any questions.",
+      "email_ar": "يا هلا وسهلا،\nنعتذر عن الإشكالية اللي واجهتك، لا تشيل هم.\nتم رفع طلبك إلى الفريق المختص لمعالجته بأسرع وقت ممكن.\n\nنشكر لك تفهمك.\nأي خدمة ثانية؟ حنا موجودين."
+    }
+  ]
+}

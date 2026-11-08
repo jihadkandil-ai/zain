@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "source": "data/zain_kb_export.docx (TAMARA_KNOWLEDGE_BASE)",
+  "notes": "Google Doc comments were NOT included in the .docx export. Actions come from agentAction + salesforce.macro fields.",
+  "mandatory_fraud_questions": [
+    "When and how did you first notice this issue?",
+    "If you received any codes from KYC providers for Tamara account creation recently, were they shared with someone else? If yes, why?",
+    "Do you suspect someone might have access to your personal information?",
+    "Have you lost your physical ID card or phone recently? If yes, please share more details.",
+    "Have you ever shared your information with someone claiming to be from a government entity or a financial institution recently?",
+    "Do you want to block the account temporarily until the investigation is complete?"
+  ],
+  "topics": {
+    "national_identity_fraud": {
+      "topic": "National Identity Fraud",
+      "critical_security_rule": "CRITICAL: DO NOT share any account details (names, phone numbers) until the customer has uploaded their ID snippet.",
+      "primary_questions_rule": "Must answer at least 2 primary questions correctly",
+      "primary_questions": [
+        "Last 4 digits of National ID",
+        "Date of Birth (Exact Gregorian/Hijri as per CS Panel — do not use online Hijri converters)",
+        "Contact number customer is trying to register on / contacted by agency"
+      ],
+      "secondary_questions": [
+        "Last payment method + last 4 digits of card",
+        "Date of last placed order or installment",
+        "Total amount of last placed order or last installment paid"
+      ],
+      "mandatory_evidence": [
+        "A clear photo/snippet of their National ID to confirm legal ownership",
+        "Screenshot of the error on Tamara App or screenshot of the account interface"
+      ],
+      "scenarios": [
+        {
+          "id": "NID_NOT_REGISTERED",
+          "title": "ID is Not Registered in Tamara",
+          "condition": "Search with National ID in CS Hub returns 0 records.",
+          "agent_action": "Inform the customer that their ID is not linked to any Tamara account. Advise them never to share OTPs, ID numbers, or account details.",
+          "keywords": ["id not registered", "id not found", "id not linked", "nid not registered", "0 records", "هوية غير مسجلة", "غير مسجل"],
+          "salesforce": {
+            "issue_type": "Account > Account Security > National ID Fraud",
+            "case_comment_resolution_type": "National ID Fraud > ID Not Found",
+            "status": "Closed"
+          }
+        },
+        {
+          "id": "NID_IN_SIMAH_KNOWN_PHONE",
+          "title": "ID Not in Tamara but in SIMAH (Recognized Phone)",
+          "condition": "ID exists in SIMAH records under Tamara/Nakhalah, and the customer recognizes the registered phone number.",
+          "agent_action": "Advise customer that this reflects their registered activity. Advise never to share OTPs or credentials.",
+          "keywords": ["simah", "known phone", "recognizes phone", "سمة", "رقم معروف"],
+          "salesforce": {
+            "issue_type": "Account > Account Security > National ID Fraud",
+            "case_comment_resolution_type": "National ID Fraud > ID Not Found < Present in SIMAH (Known Phone number)",
+            "status": "Closed"
+          }
+        },
+        {
+          "id": "NID_IN_SIMAH_UNRECOGNIZED_PHONE",
+          "title": "ID in SIMAH (Unrecognized Phone - Potential Fraud)",
+          "condition": "ID exists in SIMAH, but customer does NOT recognize the phone number.",
+          "agent_action": "Potential fraud. Administer the 6 Mandatory Fraud Questions. Escalate immediately without resolving.",
+          "use_mandatory_fraud_questions": true,
+          "keywords": ["simah unrecognized", "unrecognized phone", "doesn't recognize phone", "does not recognize phone", "simah", "رقم غريب", "لا يعرف الرقم"],
+          "salesforce": {
+            "macro": "Ticket Escalated",
+            "issue_type": "Account > Account Security > National ID Fraud",
+            "case_comment_resolution_type": "National ID Fraud > ID Not Found < Present in SIMAH (Unrecognized Phone number)",
+            "status": "Working",
+            "escalate_to": "Trust & Safety"
+          }
+        },
+        {
+          "id": "NID_RECYCLED_PHONE",
+          "title": "Recycled Phone Number Issue",
+          "condition": "National ID not in Tamara, but the customer's phone number is registered under another account.",
+          "agent_action": "Inform them the number is tied to an existing profile. Administer 6 Mandatory Fraud Questions and escalate.",
+          "use_mandatory_fraud_questions": true,
+          "keywords": ["recycled phone", "phone already registered", "number tied", "رقم معاد تدويره", "الرقم مرتبط"],
+          "salesforce": {
+            "macro": "Ticket Escalated",
+            "issue_type": "Account > Account Security > National ID Fraud",
+            "case_comment_resolution_type": "National ID Fraud > Recycled Phone Number",
+            "status": "Working",
+            "escalate_to": "Trust & Safety"
+          }
+        },
+        {
+          "id": "NID_FOUND_FRIENDLY_USE",
+          "title": "ID Linked - Customer Recognizes User (Family / Friend)",
+          "condition": "Snippet received. Disclosed First Name and Last 4 of phone on file + last shipping address. Customer recognizes the party.",
+          "agent_action": "Allow continued account use. If access is lost due to lost phone, guide to Account Recovery (KSA Absher) or Manual Phone Change (UAE).",
+          "keywords": ["family", "friend", "recognizes user", "friendly use", "حساب العائلة", "صديق"],
+          "salesforce": {
+            "issue_type": "Account > Account Security > National ID Fraud",
+            "case_comment_resolution_type": "National ID Fraud > Family/ Friendly Account Sharing",
+            "status": "Closed"
+          }
+        },
+        {
+          "id": "NID_FOUND_POTENTIAL_FRAUD",
+          "title": "ID Linked - Customer Does NOT Recognize User",
+          "condition": "Snippet received. Customer confirms zero knowledge of account details or orders.",
+          "agent_action": "Potential identity theft. Administer 6 Mandatory Fraud Questions and escalate to Trust & Safety.",
+          "use_mandatory_fraud_questions": true,
+          "keywords": ["identity theft", "does not recognize user", "doesn't recognize account", "potential fraud", "احتيال هوية"],
+          "salesforce": {
+            "macro": "Ticket Escalated",
+            "issue_type": "Account > Account Security > National ID Fraud",
+            "case_comment_resolution_type": "National ID Fraud > Potential Fraud",
+            "status": "Working",
+            "escalate_to": "Trust & Safety"
+          }
+        }
+      ]
+    },
+    "order_fraud": {
+      "topic": "Order Fraud / Unrecognized Charge on Account",
+      "scenarios": [
+        {
+          "id": "ORDER_FRAUD_EXPIRED",
+          "title": "Order Status is Inactive / Expired",
+          "condition": "CS Hub > Customer Detail > Histories > Order Status is Expired / Cancelled.",
+          "agent_action": "Provide User First Name and Last 4 of Phone on shipping info. Explain that the order is inactive with 0 liability. Educate on not sharing OTPs.",
+          "keywords": ["expired order", "cancelled order", "inactive order", "zero liability", "طلب منتهي", "طلب ملغي"],
+          "salesforce": {
+            "issue_type": "Payment > Unrecognized charge > Explained to customer (no issue)",
+            "case_comment_resolution_type": "Order Fraud > Expired Order (Zero Dues)",
+            "status": "Closed"
+          }
+        },
+        {
+          "id": "ORDER_FRAUD_ACTIVE",
+          "title": "Order Status is Active (Approved / Authorised / Captured)",
+          "condition": "CS Hub order is active and customer does not recognize the order or recipient.",
+          "agent_action": "Ask Order Fraud questionnaire (Q1-Q9: When did it happen? How was ID leaked? Why was Absher OTP given? Who was caller? Police report filed?). Escalate to Trust & Safety.",
+          "keywords": ["order fraud", "unauthorized order", "doesn't recognize order", "active unauthorized", "طلب احتيال", "طلب غير معروف"],
+          "salesforce": {
+            "macro": "Ticket Escalated",
+            "issue_type": "Payment > Unrecognized charge > Suspected fraud",
+            "case_comment_resolution_type": "Order Fraud > Active Unauthorized Order",
+            "status": "Working",
+            "escalate_to": "Trust & Safety"
+          }
+        }
+      ]
+    },
+    "unrecognized_charges": {
+      "topic": "Unrecognized Bank Card Deductions",
+      "scenarios": [
+        {
+          "id": "CHG_ON_OWN_ACCOUNT",
+          "title": "Deduction Matches Customer's Own Account",
+          "condition": "Charge found in CS Hub Payment Dashboard matching customer's own order installment.",
+          "agent_action": "Confirm order ID and store details. Explain installment schedule to customer.",
+          "keywords": ["own account", "own installment", "installment explained", "charge on my account", "matches customer", "خصم على حسابي", "قسط"],
+          "salesforce": {
+            "macro": "Transaction made on the customer account",
+            "issue_type": "Payment > Unrecognized charge > Explained to customer (no issue)",
+            "case_comment_resolution_type": "Unrecognized Charge > Explained to customer",
+            "status": "Closed"
+          }
+        },
+        {
+          "id": "CHG_ON_OTHER_ACCOUNT",
+          "title": "Card Charged on Another Customer's Account",
+          "condition": "Card deduction exists on a third-party Tamara account.",
+          "agent_action": "STRICT PRIVACY: Do NOT share any details of the other account. Advise customer to check with family/friends, contact their bank to freeze the card, and file an unauthorized charge dispute.",
+          "keywords": ["charge other account", "another customer account", "another account", "third party account", "card on another", "unrecognized charge", "خصم على حساب آخر", "بطاقة مسروقة"],
+          "salesforce": {
+            "macro": "Unrecognized charge pushback - KSA / UAE",
+            "issue_type": "Payment > Unrecognized charge > Explained to customer (no issue)",
+            "case_comment_resolution_type": "Unrecognized Charge > 3rd Party Account Pushback",
+            "status": "Closed"
+          }
+        },
+        {
+          "id": "REMOVE_CARD_REQUEST",
+          "title": "Customer Requests Card Removal from Other Account",
+          "condition": "Customer requests Tamara to manually detach their stolen card from another person's account.",
+          "agent_action": "Inform customer Tamara cannot manually delete payment methods from third-party accounts. Push back to issuing bank.",
+          "keywords": ["remove card", "delete card", "detach card", "cannot remove card", "remove card from another", "حذف البطاقة", "إزالة البطاقة"],
+          "salesforce": {
+            "macro": "Cannot Remove Card From Another Account",
+            "issue_type": "Payment > Unrecognized charge > Suspected fraud",
+            "case_comment_resolution_type": "Unrecognized Charge > Cannot Remove Card",
+            "status": "Closed"
+          }
+        }
+      ]
+    },
+    "phone_number_archiving": {
+      "topic": "Phone Number Archiving (Recycled Number)",
+      "mandatory_evidence": [
+        "Screenshot of customer's valid National ID",
+        "Soft copy of telecom service/purchase contract (first service date must be recent and postdate original Tamara account creation date)",
+        "Screenshot from Tawakkalna / Absher app showing phone number verified under their National ID"
+      ],
+      "scenarios": [
+        {
+          "id": "PHONE_ARCH_EVIDENCE_PENDING",
+          "title": "Awaiting Telecom Contract / Verification Evidence",
+          "condition": "Customer has not yet provided all 3 mandatory documents.",
+          "agent_action": "Request National ID, Telecom Contract, and Tawakkalna/Absher verification screenshot.",
+          "keywords": ["phone archiving", "phone already in use", "ask for evidence phone", "telecom contract", "توكّلنا", "أرشفة الرقم", "الرقم مستخدم"],
+          "salesforce": {
+            "macro": "Phone No. archiving - Ask for evidence",
+            "issue_type": "Account > Registration & Login > Phone number already in use",
+            "case_comment_resolution_type": "Phone Archiving > Pending Evidence",
+            "status": "Pending Customer"
+          }
+        },
+        {
+          "id": "PHONE_ARCH_ESCALATION",
+          "title": "Evidence Validated -> Unlink Account",
+          "condition": "All 3 documents match and telecom contract date confirms recent ownership transfer.",
+          "agent_action": "Attach documents and contract dates to SF Case Comment. Escalate to Trust & Safety.",
+          "keywords": ["phone evidence validated", "unlink phone", "ownership transfer", "أرشفة مكتملة", "فصل الرقم"],
+          "salesforce": {
+            "macro": "Ticket Escalated",
+            "issue_type": "Account > Registration & Login > Phone number already in use",
+            "case_comment_resolution_type": "Phone Archiving > Validated Ownership Transfer",
+            "status": "Working",
+            "escalate_to": "Trust & Safety"
+          }
+        }
+      ]
+    },
+    "revoke_id_verification": {
+      "topic": "Revoke ID Verification / Data Mismatch",
+      "scenarios": [
+        {
+          "id": "REVOKE_ID_TECH_MISMATCH",
+          "title": "Name, DOB, or 1-2 ID Digits Typo Correction",
+          "condition": "Legitimate owner with OCR typo in first/last name, incorrect DOB, 1-2 wrong digits, minor spelling variation, or legal name change.",
+          "agent_action": "Compare National ID screenshot with CS Hub. Add Customer ID, mismatch breakdown, and ID screenshot to case comments. Escalate to Tech Support.",
+          "keywords": ["revoke id", "data mismatch", "wrong dob", "name typo", "id digits", "تصحيح هوية", "خطأ في الاسم"],
+          "salesforce": {
+            "macro": "Ticket Escalated",
+            "issue_type": "Account > ID verification",
+            "case_comment_resolution_type": "Technical Profile Correction",
+            "status": "Working",
+            "escalate_to": "Tech Support",
+            "sla": "7 business days"
+          }
+        }
+      ]
+    },
+    "bnpl_plus_cooling_off": {
+      "topic": "BNPL+ / Pay By Finance Policy & Cooling-Off Rules",
+      "scenarios": [
+        {
+          "id": "BNPL_COOLING_FULL_REFUND",
+          "title": "Full Order Cancellation Within 14-Day Cooling-Off",
+          "condition": "Order cancelled in full <= 14 days from Order Approval Date.",
+          "agent_action": "100% full refund: Principal amount + Processing Fee + Accrued Murabaha Profit/Service Fee are all refunded/reversed.",
+          "keywords": ["within cooling", "within cool-off", "cooling off", "cool-off", "14-day", "14 day", "full cancellation", "full cancel", "full refund within", "فترة التهدئة", "إلغاء كامل خلال"],
+          "salesforce": {
+            "macro": "BNPL+ - Refunds (KSA / UAE)",
+            "issue_type": "Refunds and Cancellations > How to return or cancel an order or item",
+            "case_comment_resolution_type": "BNPL+ Full Cancellation (Within Cool-off)",
+            "status": "Closed"
+          }
+        },
+        {
+          "id": "BNPL_COOLING_POST_REFUND",
+          "title": "Full Order Cancellation After 14-Day Cooling-Off",
+          "condition": "Order cancelled in full > 14 days from Order Approval Date.",
+          "agent_action": "Principal is 100% refunded. Processing fee is NON-REFUNDABLE. Customer must pay accrued Murabaha profit for the days the contract was active.",
+          "keywords": ["after cooling", "post cool-off", "processing fee non-refundable", "بعد فترة التهدئة", "رسوم المعالجة غير مستردة"],
+          "salesforce": {
+            "macro": "BNPL+ - Refunds (KSA / UAE)",
+            "issue_type": "Refunds and Cancellations > Late Refund > Refund already processed",
+            "case_comment_resolution_type": "BNPL+ Cancellation Post Cooling-off",
+            "status": "Closed"
+          }
+        },
+        {
+          "id": "BNPL_PARTIAL_REFUND",
+          "title": "Partial Order Cancellation (Any Time)",
+          "condition": "Customer returns only part of the order at any time.",
+          "agent_action": "Principal adjusted via installment rescheduling. Processing fee is NON-REFUNDABLE. Accrued Murabaha profit is NEVER refunded for partial returns.",
+          "keywords": ["bnpl partial", "partial cancellation", "partial return", "partial refund bnpl", "استرجاع جزئي تمويل", "إلغاء جزئي"],
+          "salesforce": {
+            "macro": "BNPL+ (Partial refund) - adjusted amount more than what's paid",
+            "issue_type": "Refunds and Cancellations > Late Refund > Refund already processed",
+            "case_comment_resolution_type": "BNPL+ Partial Cancellation",
+            "status": "Closed"
+          }
+        }
+      ]
+    }
+  },
+  "macro_to_email_id": {
+    "Ticket Escalated": "ticket_escalated_l2",
+    "Phone No. archiving - Ask for evidence": "ask_for_evidence_general",
+    "BNPL+ (Partial refund) - adjusted amount more than what's paid": "partial_refund_plan_adjusted",
+    "BNPL+ - Refunds (KSA / UAE)": "full_refund_late",
+    "Transaction made on the customer account": "ask_for_evidence_general",
+    "Unrecognized charge pushback - KSA / UAE": "ask_for_evidence_general",
+    "Cannot Remove Card From Another Account": "ask_for_evidence_general"
+  }
+}
