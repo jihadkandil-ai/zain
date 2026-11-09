@@ -94,7 +94,7 @@
       "id": "account_id_verification",
       "path": "Account > ID verification",
       "issue_category": "Account",
-      "sub_category": "ID verification",
+      "sub_category": "N/A",
       "issue_type": "ID verification",
       "use_case": "Unable to complete or questions about identity verification.",
       "includes": [
@@ -117,7 +117,7 @@
       "id": "account_passcode",
       "path": "Account > Passcode",
       "issue_category": "Account",
-      "sub_category": "Passcode",
+      "sub_category": "N/A",
       "issue_type": "Passcode",
       "use_case": "Difficulty with Tamara account passcode.",
       "includes": [
@@ -138,7 +138,7 @@
       "id": "account_registration_login",
       "path": "Account > Registration & login",
       "issue_category": "Account",
-      "sub_category": "Registration & login",
+      "sub_category": "N/A",
       "issue_type": "Registration & login",
       "use_case": "Unable to sign up or log in, or general registration questions.",
       "includes": [
@@ -345,7 +345,7 @@
       "id": "legal_and_government_shariah_compliance",
       "path": "Legal and Government > Shariah compliance",
       "issue_category": "Legal and Government",
-      "sub_category": "Shariah compliance",
+      "sub_category": "N/A",
       "issue_type": "Shariah compliance",
       "use_case": "Whether Tamara products comply with Islamic finance.",
       "includes": [
@@ -369,7 +369,7 @@
       "id": "order_merchant_fraud",
       "path": "Order > Merchant fraud",
       "issue_category": "Order",
-      "sub_category": "Merchant fraud",
+      "sub_category": "N/A",
       "issue_type": "Merchant fraud",
       "use_case": "Merchant intentionally deceived or scam suspected.",
       "includes": [
@@ -889,7 +889,7 @@
       "id": "other_could_not_find_a_relevant_issue_type",
       "path": "Other > Could not find a relevant issue type",
       "issue_category": "Other",
-      "sub_category": "Could not find a relevant issue type",
+      "sub_category": "N/A",
       "issue_type": "Could not find a relevant issue type",
       "use_case": "Contact does not fit any existing issue type after review.",
       "includes": [
@@ -908,7 +908,7 @@
       "id": "other_related_to_collection_agency",
       "path": "Other > Related to Collection agency",
       "issue_category": "Other",
-      "sub_category": "Related to Collection agency",
+      "sub_category": "N/A",
       "issue_type": "Related to Collection agency",
       "use_case": "Contacted by collection agency or concerns about collection.",
       "includes": [
@@ -931,7 +931,7 @@
       "id": "other_customer_feedback_about_merchant",
       "path": "Other > Customer feedback about merchant",
       "issue_category": "Other",
-      "sub_category": "Customer feedback about merchant",
+      "sub_category": "N/A",
       "issue_type": "Customer feedback about merchant",
       "use_case": "General feedback about a merchant not tied to a specific order.",
       "includes": [
@@ -952,7 +952,7 @@
       "id": "other_about_tamara_general",
       "path": "Other > About Tamara (General)",
       "issue_category": "Other",
-      "sub_category": "About Tamara (General)",
+      "sub_category": "N/A",
       "issue_type": "About Tamara (General)",
       "use_case": "Truly general questions about Tamara.",
       "includes": [
@@ -1053,7 +1053,7 @@
       "id": "other_contact_from_merchant",
       "path": "Other > Contact from merchant",
       "issue_category": "Other",
-      "sub_category": "Contact from merchant",
+      "sub_category": "N/A",
       "issue_type": "Contact from merchant",
       "use_case": "Contact initiated by a merchant rather than customer.",
       "includes": [
@@ -1086,7 +1086,7 @@
       "id": "other_test_contact",
       "path": "Other > Test contact",
       "issue_category": "Other",
-      "sub_category": "Test contact",
+      "sub_category": "N/A",
       "issue_type": "Test contact",
       "use_case": "Internal system/process test contact.",
       "includes": [
@@ -1104,7 +1104,7 @@
       "id": "other_spam",
       "path": "Other > Spam",
       "issue_category": "Other",
-      "sub_category": "Spam",
+      "sub_category": "N/A",
       "issue_type": "Spam",
       "use_case": "Unsolicited non-support junk.",
       "includes": [
@@ -1185,7 +1185,7 @@
       "id": "other_fraudulent_misleading_ads",
       "path": "Other > Fraudulent / Misleading Ads",
       "issue_category": "Other",
-      "sub_category": "Fraudulent / Misleading Ads",
+      "sub_category": "N/A",
       "issue_type": "Fraudulent / Misleading Ads",
       "use_case": "Ad believed fraudulent inaccurate or impersonating Tamara.",
       "includes": [
@@ -1207,7 +1207,7 @@
       "id": "other_campaign_post",
       "path": "Other > Campaign Post",
       "issue_category": "Other",
-      "sub_category": "Campaign Post",
+      "sub_category": "N/A",
       "issue_type": "Campaign Post",
       "use_case": "Contact about a specific campaign post or promo.",
       "includes": [
@@ -1246,7 +1246,7 @@
       "id": "outbound_outbound_calling_campaign",
       "path": "Outbound > Outbound calling campaign",
       "issue_category": "Outbound",
-      "sub_category": "Outbound calling campaign",
+      "sub_category": "N/A",
       "issue_type": "Outbound calling campaign",
       "use_case": "Tamara-initiated outbound calling campaign contact.",
       "includes": [
@@ -1264,7 +1264,7 @@
       "id": "payment_other",
       "path": "Payment > Other",
       "issue_category": "Payment",
-      "sub_category": "Other",
+      "sub_category": "N/A",
       "issue_type": "Other",
       "use_case": "General payment questions that fit no specific Payment sub-category.",
       "includes": [
@@ -1295,7 +1295,7 @@
       "id": "payment_high_downpayment",
       "path": "Payment > High Downpayment",
       "issue_category": "Payment",
-      "sub_category": "High Downpayment",
+      "sub_category": "N/A",
       "issue_type": "High Downpayment",
       "use_case": "Surprised by or questions about down payment amount.",
       "includes": [
@@ -1398,7 +1398,7 @@
       "id": "payment_late_fee",
       "path": "Payment > Late fee",
       "issue_category": "Payment",
-      "sub_category": "Late fee",
+      "sub_category": "N/A",
       "issue_type": "Late fee",
       "use_case": "Questions/concerns about late fee.",
       "includes": [
@@ -1421,7 +1421,7 @@
       "id": "payment_chargeback",
       "path": "Payment > Chargeback",
       "issue_category": "Payment",
-      "sub_category": "Chargeback",
+      "sub_category": "N/A",
       "issue_type": "Chargeback",
       "use_case": "Chargeback initiated or considered via bank.",
       "includes": [
@@ -1496,12 +1496,18 @@
         "error adding card",
         "card type not supported",
         "card rejected checkout payment",
-        "card works elsewhere not Tamara"
+        "card works elsewhere not Tamara",
+        "unable to pay pending dues because of card",
+        "card declined when paying dues"
       ],
       "does_not_include": [],
       "keywords": [
         "card not accepted",
-        "بطاقة مرفوضة"
+        "card declined",
+        "card related",
+        "بطاقة مرفوضة",
+        "البطاقة ما تشتغل",
+        "مشكلة بطاقة"
       ]
     },
     {
@@ -1649,7 +1655,7 @@
       "id": "payment_postpone_payment",
       "path": "Payment > Postpone payment",
       "issue_category": "Payment",
-      "sub_category": "Postpone payment",
+      "sub_category": "N/A",
       "issue_type": "Postpone payment",
       "use_case": "Delay or reschedule upcoming payment.",
       "includes": [
@@ -1657,21 +1663,28 @@
         "is postpone possible conditions",
         "postpone fee",
         "postpone again",
-        "how many times postpone"
+        "how many times postpone",
+        "promise to pay",
+        "wants to change due date"
       ],
       "does_not_include": [
         "technical pay error → Unable to Pay"
       ],
       "keywords": [
         "postpone payment",
-        "تأجيل دفعة"
+        "promise to pay",
+        "defer payment",
+        "adjust payment plan",
+        "تأجيل دفعة",
+        "يأجل دفعه",
+        "وعد بالدفع"
       ]
     },
     {
       "id": "payment_customer_processing_fees",
       "path": "Payment > Customer Processing Fees",
       "issue_category": "Payment",
-      "sub_category": "Customer Processing Fees",
+      "sub_category": "N/A",
       "issue_type": "Customer Processing Fees",
       "use_case": "Questions about processing fee on order.",
       "includes": [
@@ -1690,7 +1703,7 @@
       "id": "payment_unable_to_pay_pending_dues",
       "path": "Payment > Unable to pay pending dues",
       "issue_category": "Payment",
-      "sub_category": "Unable to pay pending dues",
+      "sub_category": "N/A",
       "issue_type": "Unable to pay pending dues",
       "use_case": "Difficulty paying due instalments.",
       "includes": [
@@ -1698,13 +1711,24 @@
         "pay now greyed out page fail",
         "unable apple pay",
         "payment method not accepted for instalments",
-        "sufficient funds still unable"
+        "sufficient funds still unable",
+        "app technical issue cannot pay",
+        "agent sent payment link because unable to pay"
       ],
-      "does_not_include": [],
+      "does_not_include": [
+        "card-specific rejection → Card is not accepted"
+      ],
       "keywords": [
         "unable to pay",
         "can't pay",
+        "not able to pay",
+        "pending dues",
+        "payment link",
+        "technical issue pay",
+        "app error pay",
         "ما أقدر أدفع",
+        "ما قدرت ادفع",
+        "مستحقات",
         "pay now error"
       ]
     },
@@ -1712,7 +1736,7 @@
       "id": "promotions_cashback_cashback",
       "path": "Promotions & Cashback > Cashback",
       "issue_category": "Promotions & Cashback",
-      "sub_category": "Cashback",
+      "sub_category": "N/A",
       "issue_type": "Cashback",
       "use_case": "Questions/concerns about cashback.",
       "includes": [
@@ -1733,7 +1757,7 @@
       "id": "promotions_cashback_discount",
       "path": "Promotions & Cashback > Discount",
       "issue_category": "Promotions & Cashback",
-      "sub_category": "Discount",
+      "sub_category": "N/A",
       "issue_type": "Discount",
       "use_case": "Discount or promo code issues.",
       "includes": [
@@ -1756,7 +1780,7 @@
       "id": "refunds_and_cancellations_how_to_return_cancel_an_order_or_item",
       "path": "Refunds and Cancellations > How to return/cancel an order or item",
       "issue_category": "Refunds and Cancellations",
-      "sub_category": "How to return/cancel an order or item",
+      "sub_category": "N/A",
       "issue_type": "How to return/cancel an order or item",
       "use_case": "Guidance on how to return/cancel; informational only.",
       "includes": [
@@ -1780,7 +1804,7 @@
       "id": "refunds_and_cancellations_merchant_incorrectly_canceled_the_order_item",
       "path": "Refunds and Cancellations > Merchant incorrectly canceled the order/item",
       "issue_category": "Refunds and Cancellations",
-      "sub_category": "Merchant incorrectly canceled the order/item",
+      "sub_category": "N/A",
       "issue_type": "Merchant incorrectly canceled the order/item",
       "use_case": "Merchant canceled without customer request/consent.",
       "includes": [
@@ -1802,7 +1826,7 @@
       "id": "refunds_and_cancellations_incorrect_refund_amount",
       "path": "Refunds and Cancellations > Incorrect refund amount",
       "issue_category": "Refunds and Cancellations",
-      "sub_category": "Incorrect refund amount",
+      "sub_category": "N/A",
       "issue_type": "Incorrect refund amount",
       "use_case": "Refund amount does not match expectation.",
       "includes": [
@@ -1890,7 +1914,7 @@
       "id": "refunds_and_cancellations_wallet_refund",
       "path": "Refunds and Cancellations > Wallet refund",
       "issue_category": "Refunds and Cancellations",
-      "sub_category": "Wallet refund",
+      "sub_category": "N/A",
       "issue_type": "Wallet refund",
       "use_case": "Refund credited to Tamara wallet questions.",
       "includes": [
@@ -1909,7 +1933,7 @@
       "id": "refunds_and_cancellations_refund_blocked_by_merchant",
       "path": "Refunds and Cancellations > Refund Blocked by Merchant",
       "issue_category": "Refunds and Cancellations",
-      "sub_category": "Refund Blocked by Merchant",
+      "sub_category": "N/A",
       "issue_type": "Refund Blocked by Merchant",
       "use_case": "Refund cannot process because merchant blocked/unable.",
       "includes": [
@@ -1929,7 +1953,7 @@
       "id": "smart_membership_about_tamara_smart_membership_benefits",
       "path": "Smart Membership > About Tamara Smart Membership & Benefits",
       "issue_category": "Smart Membership",
-      "sub_category": "About Tamara Smart Membership & Benefits",
+      "sub_category": "N/A",
       "issue_type": "About Tamara Smart Membership & Benefits",
       "use_case": "General questions about Smart Membership.",
       "includes": [
@@ -1951,7 +1975,7 @@
       "id": "smart_membership_how_to_subscribe",
       "path": "Smart Membership > How to subscribe",
       "issue_category": "Smart Membership",
-      "sub_category": "How to subscribe",
+      "sub_category": "N/A",
       "issue_type": "How to subscribe",
       "use_case": "Sign up for Smart Membership or subscription issues.",
       "includes": [
@@ -1970,7 +1994,7 @@
       "id": "smart_membership_how_to_unsubscribe",
       "path": "Smart Membership > How to unsubscribe",
       "issue_category": "Smart Membership",
-      "sub_category": "How to unsubscribe",
+      "sub_category": "N/A",
       "issue_type": "How to unsubscribe",
       "use_case": "Cancel Smart Membership subscription.",
       "includes": [
@@ -1992,7 +2016,7 @@
       "id": "smart_membership_statement",
       "path": "Smart Membership > Statement",
       "issue_category": "Smart Membership",
-      "sub_category": "Statement",
+      "sub_category": "N/A",
       "issue_type": "Statement",
       "use_case": "Smart Membership statement/billing questions.",
       "includes": [

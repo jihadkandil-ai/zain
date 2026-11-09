@@ -849,9 +849,18 @@ RAW: list[tuple[str, str, list[str], list[str], list[str]]] = [
             "card type not supported",
             "card rejected checkout payment",
             "card works elsewhere not Tamara",
+            "unable to pay pending dues because of card",
+            "card declined when paying dues",
         ],
         [],
-        ["card not accepted", "بطاقة مرفوضة"],
+        [
+            "card not accepted",
+            "card declined",
+            "card related",
+            "بطاقة مرفوضة",
+            "البطاقة ما تشتغل",
+            "مشكلة بطاقة",
+        ],
     ),
     (
         "Payment > Payment Methods > How to add/remove a card",
@@ -940,9 +949,19 @@ RAW: list[tuple[str, str, list[str], list[str], list[str]]] = [
             "postpone fee",
             "postpone again",
             "how many times postpone",
+            "promise to pay",
+            "wants to change due date",
         ],
         ["technical pay error → Unable to Pay"],
-        ["postpone payment", "تأجيل دفعة"],
+        [
+            "postpone payment",
+            "promise to pay",
+            "defer payment",
+            "adjust payment plan",
+            "تأجيل دفعة",
+            "يأجل دفعه",
+            "وعد بالدفع",
+        ],
     ),
     (
         "Payment > Customer Processing Fees",
@@ -965,9 +984,23 @@ RAW: list[tuple[str, str, list[str], list[str], list[str]]] = [
             "unable apple pay",
             "payment method not accepted for instalments",
             "sufficient funds still unable",
+            "app technical issue cannot pay",
+            "agent sent payment link because unable to pay",
         ],
-        [],
-        ["unable to pay", "can't pay", "ما أقدر أدفع", "pay now error"],
+        ["card-specific rejection → Card is not accepted"],
+        [
+            "unable to pay",
+            "can't pay",
+            "not able to pay",
+            "pending dues",
+            "payment link",
+            "technical issue pay",
+            "app error pay",
+            "ما أقدر أدفع",
+            "ما قدرت ادفع",
+            "مستحقات",
+            "pay now error",
+        ],
     ),
     (
         "Promotions & Cashback > Cashback",
@@ -1168,11 +1201,12 @@ RAW: list[tuple[str, str, list[str], list[str], list[str]]] = [
 
 
 def split_path(path: str) -> tuple[str, str, str]:
+    """L1 / L2 / L3. Two-segment paths use Sub Category = N/A (Salesforce)."""
     parts = [p.strip() for p in path.split(">")]
     if len(parts) == 1:
-        return parts[0], "", parts[0]
+        return parts[0], "N/A", parts[0]
     if len(parts) == 2:
-        return parts[0], parts[1], parts[1]
+        return parts[0], "N/A", parts[1]
     return parts[0], parts[1], " > ".join(parts[2:])
 
 
