@@ -9,7 +9,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from src.email_standardize import standardize_matched_emails
-from src.emails_db import list_matching_macros
+from src.emails_db import resolve_exact_macro
 from src.issue_types import (
     format_closure_suggestion,
     list_matching_issue_types,
@@ -484,6 +484,9 @@ def _result_from_macro(template: dict[str, Any], notes: str) -> dict[str, Any]:
         "email_ar": email_ar,
         "case_closure": closure,
         "issue_type_matches": issue_hits,
+        # Future pillars (DBs to be shared)
+        "claim_guidance": "",
+        "escalation_guidance": "",
         "email_source": "macros_expanded_standardized",
         "email_template_id": tid,
         "email_match_reason": reason,
@@ -528,21 +531,20 @@ def _apply_selected_macro(macro: dict[str, Any], notes: str) -> None:
 
 
 def run_generation(notes: str) -> None:
-    """List matching Care macros → agent chooses → standardize Email shell."""
+    """Retrieval shortlist → LLM picks exact Care macro → standardize Email shell."""
     from src.debug_trace import zain_debug
 
     try:
         zain_debug("app_run_generation_start", notes=notes)
-        matches = list_matching_macros(notes)
+        match = resolve_exact_macro(notes)
         zain_debug(
-            "app_matches",
-            count=len(matches),
-            titles="; ".join(
-                f"{m.get('title')} ({m.get('id')})" for m in matches
-            ),
+            "app_exact_macro",
+            id=(match or {}).get("id"),
+            title=(match or {}).get("title"),
+            reason=(match or {}).get("_match_reason"),
         )
 
-        if not matches:
+        if not match:
             closure, issue_hits = _closure_from_notes(notes)
             st.session_state.macro_candidates = []
             st.session_state.macro_choice_id = ""
@@ -573,23 +575,18 @@ def run_generation(notes: str) -> None:
             )
             return
 
-        # Store lightweight candidate cards for the picker
-        st.session_state.macro_candidates = [
-            {
-                "id": str(m.get("id") or ""),
-                "title": str(m.get("title") or m.get("id") or ""),
-                "score": float(m.get("_match_score") or 0),
-                "reason": str(m.get("_match_reason") or ""),
-                "email_en": str(m.get("email_en") or ""),
-                "email_ar": str(m.get("email_ar") or ""),
-            }
-            for m in matches
-        ]
-
-        # Auto-select first; agent can change via radio
-        first = st.session_state.macro_candidates[0]
-        st.session_state.macro_choice_id = first["id"]
-        _apply_selected_macro(first, notes)
+        # Single exact macro — no multi-choice noise
+        card = {
+            "id": str(match.get("id") or ""),
+            "title": str(match.get("title") or match.get("id") or ""),
+            "score": float(match.get("_match_score") or 0),
+            "reason": str(match.get("_match_reason") or ""),
+            "email_en": str(match.get("email_en") or ""),
+            "email_ar": str(match.get("email_ar") or ""),
+        }
+        st.session_state.macro_candidates = [card]
+        st.session_state.macro_choice_id = card["id"]
+        _apply_selected_macro(card, notes)
     except TimeoutError:
         st.session_state.selected_email_id = ""
         st.session_state.generation_result = None
@@ -695,12 +692,14 @@ def render_output_tabs() -> None:
     result = st.session_state.get("generation_result") or {}
     warning = (st.session_state.generation_warning or "").strip()
 
-    tab_macro, tab_email, tab_case, tab_closure = st.tabs(
+    tab_macro, tab_email, tab_case, tab_closure, tab_claim, tab_escalation = st.tabs(
         [
             "💬 What to tell CX (Macro)",
             "✉️ Email Generation",
             "📝 Case Comment",
             "⚙️ Case Closure",
+            "🧾 Claim",
+            "🚨 Escalation",
         ]
     )
 
@@ -773,6 +772,34 @@ def render_output_tabs() -> None:
                 PLACEHOLDER_CASE_CLOSURE,
             )
 
+    with tab_claim:
+        st.markdown("**Claim guidance**")
+        st.info(
+            "Coming soon — Claim pillar will use a dedicated claims article DB "
+            "(e.g. CX disputing / following up on a claim). Share the article to wire it."
+        )
+        render_script_card(
+            "Claim (placeholder)",
+            str(
+                result.get("claim_guidance")
+                or "No claim DB yet. Paste claim-related notes later once the article is loaded."
+            ),
+        )
+
+    with tab_escalation:
+        st.markdown("**Escalation scenarios**")
+        st.info(
+            "Coming soon — Escalation pillar will use a dedicated escalation scenarios DB. "
+            "Share the article to wire it."
+        )
+        render_script_card(
+            "Escalation (placeholder)",
+            str(
+                result.get("escalation_guidance")
+                or "No escalation DB yet. Paste escalation notes later once the article is loaded."
+            ),
+        )
+
 
 def render_workspace() -> None:
     st.markdown(
@@ -819,7 +846,7 @@ def render_workspace() -> None:
                 clear_output_only()
             else:
                 with st.spinner(
-                    "Zain is matching Care macros (emails_db_expanded)…"
+                    "Zain is picking the exact Care macro…"
                 ):
                     run_generation(notes)
         st.markdown("</div>", unsafe_allow_html=True)
@@ -842,9 +869,7 @@ def render_workspace() -> None:
                         title = c.get("title") or mid
                         if not mid:
                             continue
-                        preview = (c.get("email_en") or c.get("email_ar") or "").strip()
-                        preview = " ".join(preview.split())[:70]
-                        labels[mid] = f"{title} — {preview}…" if preview else title
+                        labels[mid] = title
                     choice = st.radio(
                         "Macro",
                         options=list(labels.keys()),

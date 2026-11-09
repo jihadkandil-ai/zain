@@ -15,6 +15,100 @@ EMAILS_DB_EXPANDED_PATH = ROOT / "data" / "emails_db_expanded.json"
 # More specific intents MUST come first.
 INTENT_MACROS: list[tuple[str, tuple[str, ...]]] = [
     (
+        # Care quicktext for OTP SMS not arriving (login / registration / checkout)
+        "574Sg0000007OqQIAU",  # MFA - OTP Not Received
+        (
+            "didn't receive login otp",
+            "didnt receive login otp",
+            "didn't receive otp",
+            "didnt receive otp",
+            "otp not received",
+            "not receiving otp",
+            "not receive otp",
+            "login otp",
+            "registration otp",
+            "otp login",
+            "otp sms",
+            "لم يصل otp",
+            "ما وصل otp",
+            "ما يوصل otp",
+            "ما يجيني otp",
+            "رمز التحقق ما وصل",
+            "ما وصل رمز",
+        ),
+    ),
+    (
+        "574Sg0000004gtHIAQ",  # Promise to Pay Reject (no postpone / due-date change)
+        (
+            "promise to pay",
+            "promise-to-pay",
+            "postpone payment",
+            "postpone the payment",
+            "postpone installment",
+            "postpone due date",
+            "defer payment",
+            "delay payment",
+            "change due date",
+            "change payment date",
+            "adjust payment plan",
+            "change payment plan",
+            "reschedule payment",
+            "extend payment",
+            "يأجل دفعه",
+            "يأجل الدفعة",
+            "عايز يأجل",
+            "عايزه تأجل",
+            "يبغي يأجل",
+            "تأجيل دفعه",
+            "تأجيل الدفعة",
+            "تأجيل الدفع",
+            "تأجيل قسط",
+            "تعديل خطة الدفع",
+            "تغيير خطة الدفع",
+            "تغيير تاريخ الاستحقاق",
+            "يغير تاريخ الاستحقاق",
+            "يغيّر تاريخ الاستحقاق",
+            "تغيير موعد الدفع",
+            "يغير موعد الدفع",
+            "وعد بالدفع",
+        ),
+    ),
+    (
+        "574Sg0000004gxYIAQ",  # Late Fee Removal Decline (charged / wants waiver)
+        (
+            "late fee charged",
+            "late fees charged",
+            "late fee waiver",
+            "waive late fee",
+            "waive the late fee",
+            "remove late fee",
+            "late fee removal",
+            "رسوم تأخير",
+            "رسوم التأخير",
+            "اعفاء رسوم التأخير",
+            "إعفاء رسوم التأخير",
+            "يلغي رسوم التأخير",
+        ),
+    ),
+    (
+        "574Sg0000004gzBIAQ",  # Ask for more evidence - Item not as Described
+        (
+            "item damaged",
+            "damaged item",
+            "not as described",
+            "not as describe",
+            "item not as described",
+            "wrong item",
+            "counterfeit",
+            "تالف",
+            "مو زي الوصف",
+            "مش زي الوصف",
+            "غير مطابق",
+            "منتج تالف",
+            "الخامة غلط",
+        ),
+    ),
+    (
         "574Sg0000004gsCIAQ",  # Wants to Return/cancel the order
         (
             "cx want to cancel",
@@ -182,6 +276,10 @@ def get_email_by_id(email_id: str) -> dict[str, Any]:
 def _normalize(text: str) -> str:
     t = (text or "").strip().lower()
     t = t.replace("أ", "ا").replace("إ", "ا").replace("آ", "ا").replace("ة", "ه")
+    t = t.replace("'", "").replace("’", "").replace("`", "")
+    # Light stemming so "didn't receive" overlaps "not received"
+    t = re.sub(r"\breceived\b", "receive", t)
+    t = re.sub(r"\bdidnt\b", "did not", t)
     t = re.sub(r"\s+", " ", t)
     return t
 
@@ -193,6 +291,13 @@ _MACRO_FAMILIES: tuple[frozenset[str], ...] = (
             "574Sg0000004gsfIAA",  # Successful CKO refund
             "574Sg0000004ge8IAA",  # Successful CKO refund (alt format)
             "574Sg0000004h2xIAA",  # Successful refund - within SLA
+        }
+    ),
+    frozenset(
+        {
+            "574Sg0000007OqQIAU",  # MFA - OTP Not Received
+            "574Sg0000007OqPIAU",  # MFA - OTP Requirement
+            "574Sg0000007OyTIAU",  # MFA - Retry Checkout
         }
     ),
 )
@@ -213,6 +318,119 @@ def _intent_macro_ids(notes: str) -> list[tuple[str, str]]:
                 seen.add(macro_id)
                 zain_debug("intent_alias_hit", cue=cue, macro_id=macro_id, notes=notes)
                 break
+
+    # Non-contiguous OTP miss: "didn't receive … order … otp"
+    otp_id = "574Sg0000007OqQIAU"
+    if otp_id not in seen and "otp" in text:
+        missed = any(
+            x in text
+            for x in (
+                "not receive",
+                "did not receive",
+                "didnt receive",
+                "لم يصل",
+                "ما وصل",
+                "ما يوصل",
+                "ما يجيني",
+            )
+        )
+        if missed:
+            hits.insert(0, (otp_id, "otp+not_receive"))
+            seen.add(otp_id)
+            zain_debug("intent_alias_hit", cue="otp+not_receive", macro_id=otp_id, notes=notes)
+
+    # Late fee + waiver/remove even if words are split
+    late_id = "574Sg0000004gxYIAQ"
+    if late_id not in seen and ("late fee" in text or "late fees" in text or "رسوم تأخير" in text or "رسوم التأخير" in text):
+        wants_help = any(
+            x in text
+            for x in ("waiver", "waive", "remove", "charged", "اعفاء", "إعفاء", "يلغي", "اشيل")
+        )
+        if wants_help:
+            hits.insert(0, (late_id, "late_fee+waiver"))
+            seen.add(late_id)
+            zain_debug("intent_alias_hit", cue="late_fee+waiver", macro_id=late_id, notes=notes)
+
+    # Damaged / not-as-described even with typos ("describe")
+    item_id = "574Sg0000004gzBIAQ"
+    if item_id not in seen:
+        damaged = any(x in text for x in ("damaged", "damage", "تالف", "مكسور"))
+        nas = any(
+            x in text
+            for x in (
+                "not as described",
+                "not as describe",
+                "item not as",
+                "مو زي الوصف",
+                "مش زي الوصف",
+                "غير مطابق",
+            )
+        )
+        if damaged or nas:
+            hits.insert(0, (item_id, "item_not_as_described"))
+            seen.add(item_id)
+            zain_debug(
+                "intent_alias_hit",
+                cue="item_not_as_described",
+                macro_id=item_id,
+                notes=notes,
+            )
+
+    # Postpone / PTP / adjust plan even when phrasing is mixed EN+AR
+    ptp_id = "574Sg0000004gtHIAQ"
+    if ptp_id not in seen:
+        postpone = any(
+            x in text
+            for x in (
+                "postpone",
+                "defer",
+                "reschedule",
+                "promise to pay",
+                "ptp",
+                "يأجل",
+                "تأجيل",
+                "تاجيل",
+            )
+        )
+        paymentish = any(
+            x in text
+            for x in (
+                "payment",
+                "installment",
+                "due date",
+                "payment plan",
+                "دفع",
+                "دفعه",
+                "دفعة",
+                "قسط",
+                "استحقاق",
+                "خطة الدفع",
+            )
+        )
+        adjust_plan = any(
+            x in text
+            for x in (
+                "adjust payment plan",
+                "change payment plan",
+                "change due date",
+                "تعديل خطة الدفع",
+                "تغيير خطة الدفع",
+                "يغير تاريخ",
+                "يغيّر تاريخ",
+                "يغير موعد",
+                "تغيير تاريخ الاستحقاق",
+            )
+        )
+        if adjust_plan or (postpone and paymentish):
+            hits.insert(0, (ptp_id, "postpone_or_ptp"))
+            seen.add(ptp_id)
+            zain_debug(
+                "intent_alias_hit",
+                cue="postpone_or_ptp",
+                macro_id=ptp_id,
+                notes=notes,
+            )
+
     if not hits:
         zain_debug("intent_alias_miss", notes=notes)
     return hits
@@ -252,10 +470,20 @@ def _score_template(notes_norm: str, item: dict[str, Any]) -> float:
     if when:
         when_tokens = [tok for tok in re.split(r"[^\w\u0600-\u06FF]+", when) if len(tok) > 3]
         score += sum(0.4 for tok in when_tokens if tok in notes_norm)
+    # OTP not-received: notes rarely include the full Care title "MFA - OTP Not Received"
+    if "otp" in notes_norm and "otp" in title:
+        score += 2.0
+        if any(x in notes_norm for x in ("not receive", "did not receive", "لم يصل", "ما وصل")):
+            if "not receive" in title or "otp not receive" in title:
+                score += 5.0
     # light body cue
     for cue in ("partner", "شركاء", "dispute", "مطالب", "refund", "استرداد", "stores"):
         if cue in notes_norm and cue in body:
             score += 0.8
+
+    # Require multi-signal overlap — one shared word (e.g. "order") is not enough
+    if hits <= 1 and score < 8.0:
+        score *= 0.45
     return score
 
 
@@ -346,10 +574,11 @@ def top_macro_candidates(notes: str, limit: int = 12) -> list[dict[str, Any]]:
 def list_matching_macros(
     notes: str,
     *,
-    min_score: float = 3.5,
+    min_score: float = 6.5,
     limit: int = 8,
+    expand_families: bool = False,
 ) -> list[dict[str, Any]]:
-    """Return all plausible Care macros for the agent to choose from."""
+    """Return ranked Care macros. Prefer intent hits; keep title matches strict."""
     from src.debug_trace import zain_debug
 
     text = (notes or "").strip()
@@ -359,7 +588,7 @@ def list_matching_macros(
 
     by_id: dict[str, dict[str, Any]] = {}
 
-    # 1) Every intent alias that fires
+    # 1) Intent aliases (primary)
     for macro_id, cue in _intent_macro_ids(text):
         try:
             item = dict(get_email_by_id(macro_id))
@@ -371,41 +600,39 @@ def list_matching_macros(
         item["_match_reason"] = f"intent_alias:{cue}"
         by_id[macro_id] = item
 
-    # 2) Expand refund (and other) families so alt formats are offered
-    for mid in list(_expand_families(set(by_id))):
+    # 2) Optional family expand (refund formats / related MFA) — off by default
+    if expand_families:
+        for mid in list(_expand_families(set(by_id))):
+            if mid in by_id:
+                continue
+            try:
+                item = dict(get_email_by_id(mid))
+            except KeyError:
+                continue
+            if _is_excluded_macro(item):
+                continue
+            item["_match_score"] = 90.0
+            item["_match_reason"] = "family_expand"
+            by_id[mid] = item
+
+    # 3) Title/score pool for LLM / fallback (always collect a short shortlist)
+    notes_norm = _normalize(text)
+    scored: list[tuple[float, dict[str, Any]]] = []
+    for item in load_emails_db():
+        mid = str(item.get("id") or "")
         if mid in by_id:
             continue
-        try:
-            item = dict(get_email_by_id(mid))
-        except KeyError:
+        score = _score_template(notes_norm, item)
+        if score < min_score:
             continue
-        if _is_excluded_macro(item):
-            continue
-        item["_match_score"] = 90.0
-        item["_match_reason"] = "family_expand"
-        by_id[mid] = item
-
-    # 3) Title/score candidates only when intent didn't already find a family
-    had_intent = any(
-        str(v.get("_match_reason") or "").startswith("intent_alias")
-        for v in by_id.values()
-    )
-    if not had_intent:
-        notes_norm = _normalize(text)
-        scored: list[tuple[float, dict[str, Any]]] = []
-        for item in load_emails_db():
-            score = _score_template(notes_norm, item)
-            if score < min_score:
-                continue
-            row = dict(item)
-            row["_match_score"] = score
-            row["_match_reason"] = "title_overlap"
-            scored.append((score, row))
-        scored.sort(key=lambda x: x[0], reverse=True)
-        for score, row in scored[:limit]:
-            mid = str(row.get("id") or "")
-            if not mid or mid in by_id:
-                continue
+        row = dict(item)
+        row["_match_score"] = score
+        row["_match_reason"] = "title_overlap"
+        scored.append((score, row))
+    scored.sort(key=lambda x: x[0], reverse=True)
+    for score, row in scored[:limit]:
+        mid = str(row.get("id") or "")
+        if mid and mid not in by_id:
             by_id[mid] = row
 
     results = sorted(
@@ -422,6 +649,48 @@ def list_matching_macros(
         ),
     )
     return results
+
+
+def resolve_exact_macro(notes: str) -> dict[str, Any] | None:
+    """Retrieval shortlist → LLM picks one exact Care macro (fallback: top score)."""
+    from src.debug_trace import zain_debug
+    from src.macro_picker import pick_macro_id_with_llm, redact_light
+
+    matches = list_matching_macros(notes, limit=10)
+    if not matches:
+        return None
+
+    # Strong unique intent → trust it without LLM noise
+    top = matches[0]
+    reason = str(top.get("_match_reason") or "")
+    if reason.startswith("intent_alias") and float(top.get("_match_score") or 0) >= 100:
+        if len(matches) == 1 or float(matches[1].get("_match_score") or 0) < 80:
+            top = dict(top)
+            top["_match_reason"] = reason + "+exact"
+            zain_debug("resolve_exact_intent", id=top.get("id"), title=top.get("title"))
+            return top
+
+    cleaned = redact_light(notes)
+    picked_id, conf = pick_macro_id_with_llm(cleaned, matches)
+    if picked_id:
+        for item in matches:
+            if str(item.get("id")) == picked_id:
+                row = dict(item)
+                row["_match_score"] = max(float(item.get("_match_score") or 0), 95.0)
+                row["_match_reason"] = f"llm_pick:{conf:.2f}"
+                zain_debug(
+                    "resolve_exact_llm",
+                    id=row.get("id"),
+                    title=row.get("title"),
+                    confidence=conf,
+                )
+                return row
+
+    # Fallback: single best retrieval hit only
+    best = dict(matches[0])
+    best["_match_reason"] = str(best.get("_match_reason") or "top_score") + "+fallback"
+    zain_debug("resolve_exact_fallback", id=best.get("id"), title=best.get("title"))
+    return best
 
 
 def resolve_standardized_macro(notes: str) -> dict[str, Any] | None:
