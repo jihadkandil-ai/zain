@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from src.field_extract import extract_fields, fill_care_placeholders
-
 
 def standardize_matched_emails(
     matched_en: str,
@@ -11,11 +9,8 @@ def standardize_matched_emails(
     notes: str,
 ) -> tuple[str, str]:
     """Exact Care EN/AR with placeholder fill from notes (no shell rewrite / no LLM rewrite)."""
-    fields = extract_fields(notes)
-    return (
-        fill_care_placeholders(matched_en, fields, arabic=False),
-        fill_care_placeholders(matched_ar, fields, arabic=True),
-    )
+    en, ar, _fields = exact_macro_texts(matched_en, matched_ar, notes)
+    return en, ar
 
 
 def exact_macro_texts(
@@ -24,9 +19,14 @@ def exact_macro_texts(
     notes: str,
 ) -> tuple[str, str, dict]:
     """Same as emails, also return extracted fields for case comment / debug."""
-    fields = extract_fields(notes)
-    return (
-        fill_care_placeholders(matched_en, fields, arabic=False),
-        fill_care_placeholders(matched_ar, fields, arabic=True),
-        fields,
-    )
+    try:
+        from src.field_extract import extract_fields, fill_care_placeholders
+
+        fields = extract_fields(notes)
+        return (
+            fill_care_placeholders(matched_en, fields, arabic=False),
+            fill_care_placeholders(matched_ar, fields, arabic=True),
+            fields,
+        )
+    except Exception:  # noqa: BLE001 — never block UI if extract fails
+        return matched_en or "", matched_ar or "", {}

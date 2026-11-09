@@ -6,7 +6,7 @@ import json
 from typing import Any
 
 from src.config import get_settings, has_api_key
-from src.macro_picker import redact_light
+from src.text_utils import redact_light
 
 _SYSTEM = """You are a Tamara Voice Care agent writing an internal Case Comment for the next agent/QA.
 Rules:

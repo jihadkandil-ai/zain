@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import re
-from src.macro_picker import redact_light
+from src.text_utils import redact_light
 
 _DATE_RE = re.compile(
     r"\b(\d{1,2}[/-]\d{1,2}[/-]\d{2,4}|\d{4}[/-]\d{1,2}[/-]\d{1,2}|"

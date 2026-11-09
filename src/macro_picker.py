@@ -7,6 +7,7 @@ import re
 from typing import Any
 
 from src.config import get_settings, has_api_key
+from src.text_utils import redact_light
 
 _PICK_SYSTEM = """You are Zain's macro router for Tamara Voice Care.
 Pick the ONE Care macro id that best matches the agent's messy notes.
@@ -73,11 +74,3 @@ def pick_macro_id_with_llm(
     if not mid or mid not in allowed or conf < 0.45:
         return None, conf
     return mid, conf
-
-
-def redact_light(notes: str) -> str:
-    """Strip obvious emails/phones before sending notes to the picker."""
-    text = notes or ""
-    text = re.sub(r"\b[\w.+-]+@[\w.-]+\.\w+\b", "[email]", text)
-    text = re.sub(r"\b(?:\+?\d[\d\s\-()]{7,}\d)\b", "[phone]", text)
-    return text
