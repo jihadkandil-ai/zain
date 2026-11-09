@@ -8,14 +8,14 @@ from typing import Any
 import streamlit as st
 import streamlit.components.v1 as components
 
-from src.email_standardize import standardize_matched_emails
+from src.case_comment_llm import draft_case_comment, fallback_case_comment
+from src.email_standardize import exact_macro_texts
 from src.emails_db import resolve_exact_macro
 from src.issue_types import (
     format_closure_suggestion,
     list_matching_issue_types,
     suggest_issue_type,
 )
-from src.knowledge_base import generate_from_notes
 
 CLEAR_OUTPUT_BUTTON_LABEL = "__zain_clear_output__"
 TAMARA_LOGO_URL = (
@@ -453,41 +453,38 @@ def _closure_from_notes(notes: str) -> tuple[str, list[dict[str, Any]]]:
 
 
 def _result_from_macro(template: dict[str, Any], notes: str) -> dict[str, Any]:
-    """Match Care macro content, then wrap Email tab in a fixed Tamara shell.
-
-    - Email Generation: standardized structure (greeting / thanks / body / closing)
-    - What to tell CX: exact matched quicktext (no rewrite)
-    - Case Closure: issue type L1/L2/L3 from issue_types_kb
-    """
+    """Exact Care macro/email + issue-type retrieval; LLM only for case comment + field parse."""
     raw_en = str(template.get("email_en") or "").strip()
     raw_ar = str(template.get("email_ar") or "").strip()
-    email_en, email_ar = standardize_matched_emails(raw_en, raw_ar, notes)
+    email_en, email_ar, fields = exact_macro_texts(raw_en, raw_ar, notes)
     tid = str(template.get("id") or "")
     title = str(template.get("title") or tid)
     reason = str(template.get("_match_reason") or "retrieve")
     closure, issue_hits = _closure_from_notes(notes)
+    issue_path = str((issue_hits[0].get("path") if issue_hits else "") or "")
+    case_comment = draft_case_comment(
+        notes,
+        macro_title=title,
+        issue_path=issue_path,
+        fields=fields,
+    ) or fallback_case_comment(notes, title)
     return {
         "source": "emails_db_expanded",
         "scenario_id": tid,
         "scenario_title": title,
         "topic": "Care macros (quicktext)",
-        # Exact matched Care text for the agent talk-track tab
-        "macro_en": raw_en or PLACEHOLDER_MACRO_EN,
-        "macro_ar": raw_ar or PLACEHOLDER_MACRO_AR,
-        "case_comment": (
-            "CX Asks/Complaint:\n"
-            f"{notes.strip()}\n\n"
-            "Action Taken:\n"
-            f"Matched Care macro `{title}` and sent standardized Tamara email."
-        ),
+        # Exact Care text (placeholders filled only when found in notes)
+        "macro_en": email_en or PLACEHOLDER_MACRO_EN,
+        "macro_ar": email_ar or PLACEHOLDER_MACRO_AR,
+        "case_comment": case_comment,
         "email_en": email_en,
         "email_ar": email_ar,
         "case_closure": closure,
         "issue_type_matches": issue_hits,
-        # Future pillars (DBs to be shared)
+        "extracted_fields": fields,
         "claim_guidance": "",
         "escalation_guidance": "",
-        "email_source": "macros_expanded_standardized",
+        "email_source": "care_exact",
         "email_template_id": tid,
         "email_match_reason": reason,
         "email_confidence": float(template.get("_match_score") or 0) / 100.0,
@@ -497,7 +494,6 @@ def _result_from_macro(template: dict[str, Any], notes: str) -> dict[str, Any]:
 def _apply_selected_macro(macro: dict[str, Any], notes: str) -> None:
     from src.debug_trace import zain_debug
 
-    kb_result = generate_from_notes(notes)
     zain_debug(
         "app_using_macro",
         id=macro.get("id"),
@@ -509,13 +505,7 @@ def _apply_selected_macro(macro: dict[str, Any], notes: str) -> None:
         ar_start=(macro.get("email_ar") or "")[:160],
     )
     result = _result_from_macro(macro, notes)
-    if kb_result:
-        result["case_comment"] = kb_result.get("case_comment") or result["case_comment"]
-        result["source"] = "emails_db_expanded+kb"
-    # Always prefer Issue Types KB for Salesforce L1/L2/L3
-    closure, issue_hits = _closure_from_notes(notes)
-    result["case_closure"] = closure
-    result["issue_type_matches"] = issue_hits
+    issue_hits = result.get("issue_type_matches") or []
     st.session_state.generation_result = result
     st.session_state.selected_email_id = result.get("email_template_id") or ""
     st.session_state.macro_choice_id = str(macro.get("id") or "")
@@ -527,6 +517,7 @@ def _apply_selected_macro(macro: dict[str, Any], notes: str) -> None:
         title=macro.get("title"),
         reason=macro.get("_match_reason"),
         issue_path=(issue_hits[0].get("path") if issue_hits else None),
+        fields=result.get("extracted_fields"),
     )
 
 
